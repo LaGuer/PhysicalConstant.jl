@@ -53,9 +53,6 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(k_B, "Boltzmann constant", 1.380_648_52e-23,
           BigFloat(138_064_852)/BigFloat(10_000_000_000_000_000_000_000_000_000_000), u"J * K^-1",
           7.9e-30, BigFloat(79)/BigFloat(10_000_000_000_000_000_000_000_000_000_000), "CODATA 2019")
-@derived_constant(ƛ_e, "Reduced Compton Electron Wavelength", 1.380_648_52e-23,
-                  ustrip(big(ħ))/(c * big(m_e)), u"J*s", measurement(ħ)/cm_e,
-                  measurement(BigFloat, ħ)/(c * big(m_e)), "CODATA 2019")
 @constant(µ_B, "Bohr magneton", 927.400_9994e-26,
           BigFloat(9274_009_994)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000),
           u"J * T^-1", 5.7e-32,
@@ -117,4 +114,7 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(Z_0, "Characteristic impedance of vacuum", 376.73031346177066,
           BigFloat(1199_169_832)/BigFloat(10_000_000) * big(pi), u"Ω",
           0, BigFloat(0.0), "CODATA 2019")
+@derived_constant(ƛ_e, "Reduced Compton Electron Wavelength", 1.380_648_52e-23,
+                  ustrip(big(ħ))/(c * big(m_e)), Unitful.NoUnits, measurement(ħ)/(c * m_e),
+                  measurement(BigFloat, ħ)/(c * big(m_e)), "CODATA 2019")
 end
