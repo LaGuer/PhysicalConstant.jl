@@ -50,6 +50,13 @@ Gravitational velocity in vacuum (C)
 Value                         = 3.6993e44 m s^-1 
 Standard uncertainty          = (exact)
 Relative standard uncertainty = (exact)
+Reference                     = Francis M. Sanchez
+
+julia> Gg
+Newtonian constant of gravitation (Gg)
+Value                         = 6.67408e-11 m^3 kg^-1 s^-2
+Standard uncertainty          = 3.1e-15 m^3 kg^-1 s^-2
+Relative standard uncertainty = 4.6e-5
 Reference                     = CODATA 2019
 
 julia> Gg
@@ -116,7 +123,37 @@ Julia supports the use of unicode characters such as α and β in your code
 
 Unicode characters can be typed quickly in Jupyter using the tab key
 
-Try creating a new code cell and typing \alpha, then hitting the tab key on your keyboard
+Try creating a new code cell and typing \alpha, then hitting the tab key on your keyboard.
+
+Julia also supports:
+
+* Basic Math Symbols
+
+≠ ± ∓ ÷ × ∙ – √ ‰ ⊗ ⊕ ⊖ ⊘ ⊙ ≤ ≥ ≦ ≧ ≨ ≩ ≺ ≻ ≼ ≽ ⊏ ⊐ ⊑ ⊒ ² ³ °
+
+* Geometry Symbols
+
+∠ ∟ ° ≅ ~ ‖ ⟂ ⫛
+
+* Algebra Symbols
+
+≡ ≜ ≈ ∝ ∞ ≪ ≫ ⌊⌋ ⌈⌉ ∘∏ ∐ ∑ ⋀ ⋁ ⋂ ⋃ ⨀ ⨁ ⨂ 𝖕 𝖖 𝖗
+
+* Set of Theory Symbols
+
+∅ ∖ ∁ ↦ ↣ ∩ ∪ ⊆ ⊂ ⊄ ⊊ ⊇ ⊃ ⊅ ⊋ ⊖ ∈ ∉ ∋ ∌ ℕ ℤ ℚ ℝ ℂ ℵ ℶ ℷ ℸ 𝓟
+
+* Logic Symbols
+
+¬ ∨ ∧ ⊕ → ← ⇒ ⇐ ↔ ⇔ ∀ ∃ ∄ ∴ ∵ ⊤ ⊥ ⊢ ⊨ ⫤ ⊣
+
+* Calculus and Analysis Symbols
+
+∫ ∬ ∭ ∮ ∯ ∰ ∇ ∆ δ ∂ ℱ ℒ ℓ
+
+* Greek Letters
+
+𝛢𝛼 𝛣𝛽 𝛤𝛾 𝛥𝛿 𝛦𝜀𝜖 𝛧𝜁 𝛨𝜂 𝛩𝜃𝜗 𝛪𝜄 𝛫𝜅 𝛬𝜆 𝛭𝜇 𝛮𝜈 𝛯𝜉 𝛰𝜊 𝛱𝜋 𝛲𝜌 𝛴𝜎 𝛵𝜏 𝛶𝜐 𝛷𝜙𝜑 𝛸𝜒 𝛹𝜓 𝛺𝜔
 
 Shell Commands
 --------------
@@ -167,7 +204,7 @@ List of Constants
 | Symbol | Name                                      | Value                  | Unit             |
 | ------ | ----                                      | -----                  | ----             |
 |`ΔνC_s` | unperturbed ground state hyperfine        |  9 192 631 770         | `Hz`             |
-| `--`   | transition frequency of the cesium 133    | -----                  | ----             |
+| `--`   | transition frequency of the caesium 133   | -----                  | ----             |
 | -----  | -----                                     | -----                  | ----             |
 | `Gg`   | Newtonian constant of gravitation         | 6.67408e-11            | `m^3 kg^-1 s^-2` |
 | `G`    | Sanchez constant of gravitation           | 6.675453818e-11        | `m^3 kg^-1 s^-2` |
@@ -203,9 +240,10 @@ List of Constants
 | `t_cc` | Kotov Cosmic Periodicity                  | 9600.061(2)            | `s`              |
 | `r_0`  | Bare Hydrogen radius                      | 5.291772103e-11        | `m`              |
 |  `θ'`  | CMB Temperature in K  CODATA2014          | 2.7255(6)              | `K`              |
-|  `θ`   | CMB Temperature  in K  SANCHEZ            | 2.725820831            | `K`              |
+|  `θ`   | CMB Temperature  in K  Francis M. SANCHEZ | 2.725820831            | `K`              |
 | `a_G`  | Sanchez Gravitational Coupling Constant   | 1.691936465e38         | `-`              |
 |  `f`   |Strong Nuclear Coupling Constant C.Bizouard| 8.434502892            | `-`              |
+| `ƛ_e`  | Reduced Electron Compton Wavelength       | 3.861592046068738e-13  | `-`              |
 
 ### Updated universal constants and particle properties ( thanks to Jean Maruani / Francis Sanchez)
 * [The_Dirac_Electron_From_Quantum_Chemistry_to_Holistic_Cosmology @ researchgate](https://www.researchgate.net/publication/287808070_The_Dirac_Electron_From_Quantum_Chemistry_to_Holistic_Cosmology)
