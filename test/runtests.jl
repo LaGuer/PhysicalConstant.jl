@@ -8,17 +8,7 @@ else
     using Test
 end
 
-import PhysicalConstant.CODATA2019: α, atm, c_0, e, ε_0, h, ħ, µ_0
-
-@testset begin
-    @test ustrip(big(h)) == big"6.626070040e-34"
-    @test setprecision(BigFloat, 768) do; precision(ustrip(big(c))) end == 768
-    @test measurement(h) === measurement(h)
-    @test iszero(measurement(α) - measurement(α))
-    @test isone(measurement(BigFloat, atm) / measurement(BigFloat, atm))
-    @test iszero(measurement(BigFloat, ħ) - (measurement(BigFloat, h) / 2big(pi)))
-    @test isone(measurement(BigFloat, ħ) / (measurement(BigFloat, h) / 2big(pi)))
-end
+import PhysicalConstant.CODATA2019: α, atm, c_0, e, ε_0, h, ħ, µ_0, C_0, ƛ_e
 
 @testset "Base" begin
     @test ustrip(big(h)) == big"6.626070040e-34"
@@ -49,6 +39,7 @@ end
 
 @testset "Maths" begin
     @test α ≈ @inferred(e^2/(4 * pi * ε_0 * ħ * c_0))
+    @test ƛ_e ≈ @inferred(ħ / (c_0 * m_e))
     @test @inferred(α + 2) ≈ 2 + float(α)
     @test @inferred(5 + α) ≈ float(α) + 5
     @test @inferred(α + 2.718) ≈ 2.718 + float(α)
