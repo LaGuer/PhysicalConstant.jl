@@ -146,8 +146,8 @@ macro derived_constant(name, sym, descr, val, def, unit, measure64, measurebig, 
 end
 
 """
-    float(::Constant{symbol})
-    float(FloatType, ::Constant{symbol})
+    float(::PhysicalConstant{name,T,D,U}) where {T,D,U}
+    float(FloatType, ::PhysicalConstant{name,T,D,U}) where {T,D,U}
 
 Return the physical constant as a `Quantity` with the floating type optionally specified by
 `FloatType`, `Float64` by default.
@@ -169,11 +169,11 @@ julia> float(Float32, G)
 6.67408f-11 m^3 kg^-1 s^-2
 ```
 """
-float(::Constant)
+float(::PhysicalConstant)
 
 """
-    measurement(::Constant{symbol})
-    measurement(FloatType, ::Constant{symbol})
+    measurement(::PhysicalConstant{name,T,D,U}) where {T,D,U}
+    measurement(FloatType, ::PhysicalConstant{name,T,D,U}) where {T,D,U}
 
 Return the physical constant as a `Quantity` with standard uncertainty.  The floating-point
 precision can be optionally specified with the `FloatType`, `Float64` by default.
