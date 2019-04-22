@@ -47,10 +47,9 @@ after_success:
 jobs:
   include:
     - stage: "Documentation"
-      julia: 1.0
+      julia: nightly
       os: linux
-      allowed_failures:
-        - julia: 1.0
+      os: osx
       script:
         - julia --color=yes -e 'using Pkg; Pkg.build()'
 #        - julia --check-bounds=yes --color=yes -e 'using Pkg; Pkg.test(coverage=true)'
