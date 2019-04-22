@@ -34,7 +34,7 @@ build_script:
 #  - C:\julia\bin\julia -e "import Pkg; Pkg.BinaryProvider.probe_platform_engines!(;verbose=true)"
 #  - C:\julia\bin\julia -e "cmd = Pkg.BinaryProvider.gen_download_cmd("https:////github.com/LaGuer/PhysicalConstant.jl/archive/v0.0.3.tar.gz", "PhysicalConstant.tar.gz")"
 #  - C:\julia\bin\julia -e "unpack = Pkg.BinaryProvider.gen_unpack_cmd("PhysicalConstant.tar.gz", "PhysicalConstant")"
-  - C:\julia\bin\julia -e "import Pkg; Pkg.clone(\`"https://github.com/LaGuer/PhysicalConstant.jl.git\`")"
+#  - C:\julia\bin\julia -e "import Pkg; Pkg.clone(\`"https://github.com/LaGuer/PhysicalConstant.jl.git\`")"
 #  - C:\julia\bin\julia -e "mkdir("PhysicalConstant")"
 #  - C:\julia\bin\julia -e "run(unpack)"
   - C:\julia\bin\julia -e "using InteractiveUtils; versioninfo();
