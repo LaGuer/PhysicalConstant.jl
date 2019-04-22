@@ -1,4 +1,4 @@
-module PhysicalConstants
+module PhysicalConstant
 
 using Measurements, Unitful
 
