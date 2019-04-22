@@ -1,140 +1,148 @@
-module PhysicalConstant
+module PhysicalConstants
 
 using Measurements, Unitful
 
 import Measurements: value, uncertainty
+import Unitful: AbstractQuantity
 
-struct Constant{sym} <: Number end
+# The type
 
-function name end
-function ref end
+struct PhysicalConstant{name,T,D,U} <: AbstractQuantity{T,D,U} end
 
-macro constant(sym, name, val, def, unit, unc, bigunc, reference)
+# Functions composing the building blocks of the macros
+
+function _constant_preamble(name, sym, unit, def)
+    ename = esc(name)
+    qname = esc(Expr(:quote, name))
     esym = esc(sym)
     qsym = esc(Expr(:quote, sym))
     eunit = esc(unit)
-    tag = Measurements.tag_counters[Base.Threads.threadid()] += 1
     _bigconvert = isa(def,Symbol) ? quote
-        function _big(::Constant{$qsym})
+        function _big(::PhysicalConstant{$qname,T,D,U}) where {T,D,U}
             c = BigFloat()
             ccall(($(string("mpfr_const_", def)), :libmpfr),
                   Cint, (Ref{BigFloat}, Int32), c, MPFR.ROUNDING_MODE[])
             return c
         end
     end : quote
-        _big(::Constant{$qsym}) = $(esc(def))
+        _big(::PhysicalConstant{$qname,T,D,U}) where {T,D,U} = $(esc(def))
     end
-    quote
-        const $esym = Constant{$qsym}()
-        export $esym
-        Base.float(::Constant{$qsym}) = $val * $unit
-        Base.float(FT::DataType, ::Constant{$qsym}) = FT($val) * $eunit
-        $_bigconvert
-        Base.big(x::Constant{$qsym}) = _big(x) * $eunit
-        Base.float(::Type{BigFloat}, x::Constant{$qsym}) = big(x)
+    return ename, qname, esym, qsym, eunit, _bigconvert
+end
 
-        function Measurements.measurement(FT::DataType, ::Constant{$qsym})
+function _constant_begin(qname, ename, esym, eunit, val, _bigconvert)
+    quote
+        const $ename = PhysicalConstant{$qname,Float64,dimension($eunit),typeof($eunit)}()
+        export $ename
+        const $esym = $ename
+
+        Base.float(::PhysicalConstant{$qname,T,D,U}) where {T,D,U} = $val * $eunit
+        Base.float(FT::DataType, ::PhysicalConstant{$qname,T,D,U}) where {T,D,U} =
+            FT($val) * $eunit
+        $_bigconvert
+        Base.big(x::PhysicalConstant{$qname,T,D,U}) where {T,D,U} = _big(x) * $eunit
+        Base.float(::Type{BigFloat}, x::PhysicalConstant{$qname,T,D,U}) where {T,D,U} = big(x)
+    end
+end
+
+function _constant_end(qname, ename, qsym, descr, val, reference, eunit)
+    quote
+        Measurements.measurement(::PhysicalConstant{$qname,T,D,U}) where {T,D,U} =
+            measurement(Float64, $ename)
+
+        Unitful.unit(::PhysicalConstant{$qname,T,D,U}) where {T,D,U}      = $eunit
+        Unitful.dimension(::PhysicalConstant{$qname,T,D,U}) where {T,D,U} = D
+
+        function Base.show(io::IO, x::PhysicalConstant{$qname,T,D,U}) where {T,D,U}
+            unc = uncertainty(ustrip(measurement($ename)))
+            println(io, $descr, " (", $qsym, ")")
+            println(io, "Value                         = ", float($ename))
+            println(io, "Standard uncertainty          = ",
+                    iszero(unc) ? "(exact)" : unc * $eunit)
+            println(io, "Relative standard uncertainty = ",
+                    iszero(unc) ? "(exact)" : round(unc / $val, sigdigits=2))
+            print(io,   "Reference                     = ", $reference)
+        end
+
+        @assert isa(ustrip(float($ename)), Float64)
+        @assert isa(ustrip(big($ename)), BigFloat)
+        @assert isa(ustrip(measurement($ename)), Measurement{Float64})
+        @assert isa(ustrip(measurement(Float32, $ename)), Measurement{Float32})
+        @assert ustrip(float(Float64, $ename)) == Float64(ustrip(big($ename)))
+        @assert ustrip(float(Float32, $ename)) == Float32(ustrip(big($ename)))
+        @assert Float64(value(ustrip(measurement(BigFloat, $ename)))) ==
+            value(ustrip(measurement($ename)))
+        @assert Float64(uncertainty(ustrip(measurement(BigFloat, $ename)))) ==
+            uncertainty(ustrip(measurement($ename)))
+        @assert ustrip(big($ename)) == value(ustrip(measurement(BigFloat, $ename)))
+    end
+end
+
+# Currently AbstractQuantity defines some operations in terms of the inner field `val`.
+
+function Base.getproperty(c::PhysicalConstant{s,T,D,U}, sym::Symbol) where {s,T,D,U}
+    if sym === :val
+        return ustrip(float(T, c))
+    else # fallback to getfield
+        return getfield(c, sym)
+    end
+end
+
+# @constant and @derived_constant macros
+
+macro constant(name, sym, descr, val, def, unit, unc, bigunc, reference)
+    ename, qname, esym, qsym, eunit, _bigconvert = _constant_preamble(name, sym, unit, def)
+    tag = Measurements.tag_counters[Base.Threads.threadid()] += 1
+    quote
+        $(_constant_begin(qname, ename, esym, eunit, val, _bigconvert))
+
+        function Measurements.measurement(FT::DataType,
+                                          ::PhysicalConstant{$qname,T,D,U}) where {T,D,U}
             vl = FT($val)
             newder = Measurements.empty_der2(vl)
             if iszero($unc)
-                return Measurement{FT}(vl, FT($unc), UInt64(0), newder) * $unit
+                return Measurement{FT}(vl, FT($unc), UInt64(0), newder) * $eunit
             else
                 return Measurement{FT}(vl, FT($unc), $tag,
                                        Measurements.Derivatives(newder,
-                                                                (vl, $unc, $tag)=>one(FT))) * $unit
+                                                                (vl, $unc, $tag)=>one(FT))) * $eunit
             end
         end
-        function Measurements.measurement(::Type{BigFloat}, x::Constant{$qsym})
+        function Measurements.measurement(::Type{BigFloat},
+                                          x::PhysicalConstant{$qname,T,D,U}) where {T,D,U}
             vl = _big(x)
             unc = BigFloat($bigunc)
             newder = Measurements.empty_der2(vl)
             if iszero($unc)
-                return Measurement{BigFloat}(vl, unc, UInt64(0), newder) * $unit
+                return Measurement{BigFloat}(vl, unc, UInt64(0), newder) * $eunit
             else
                 return Measurement{BigFloat}(vl, unc, $tag,
                                              Measurements.Derivatives(newder,
-                                                                      (vl, unc, $tag)=>one(BigFloat))) * $unit
+                                                                      (vl, unc, $tag)=>one(BigFloat))) * $eunit
             end
         end
-        Measurements.measurement(::Constant{$qsym}) = measurement(Float64, $esym)
 
-        PhysicalConstant.name(::Constant{$qsym})    = $name
-        PhysicalConstant.ref(::Constant{$qsym})     = $reference
-        Unitful.unit(::Constant{$qsym})      = $unit
-        Unitful.dimension(::Constant{$qsym}) = Unitful.dimension($unit)
-
-        @assert isa(ustrip(float($esym)), Float64)
-        @assert isa(ustrip(big($esym)), BigFloat)
-        @assert isa(ustrip(measurement($esym)), Measurement{Float64})
-        @assert ustrip(float(Float64, $esym)) == Float64(ustrip(big($esym)))
-        @assert ustrip(float(Float32, $esym)) == Float32(ustrip(big($esym)))
-        @assert Float64(value(ustrip(measurement(BigFloat, $esym)))) ==
-            value(ustrip(measurement($esym)))
-        @assert Float64(uncertainty(ustrip(measurement(BigFloat, $esym)))) ==
-            uncertainty(ustrip(measurement($esym)))
+        $(_constant_end(qname, ename, qsym, esc(descr), val, reference, eunit))
     end
 end
 
-macro derived_constant(sym, name, val, def, unit, measure64, measurebig, reference)
-    esym = esc(sym)
-    qsym = esc(Expr(:quote, sym))
-    eunit = esc(unit)
-    tag = Measurements.tag_counters[Base.Threads.threadid()] += 1
-    _bigconvert = isa(def,Symbol) ? quote
-        function _big(::Constant{$qsym})
-            c = BigFloat()
-            ccall(($(string("mpfr_const_", def)), :libmpfr),
-                  Cint, (Ref{BigFloat}, Int32), c, MPFR.ROUNDING_MODE[])
-            return c
-        end
-    end : quote
-        _big(::Constant{$qsym}) = $(esc(def))
-    end
+macro derived_constant(name, sym, descr, val, def, unit, measure64, measurebig, reference)
+    ename, qname, esym, qsym, eunit, _bigconvert = _constant_preamble(name, sym, unit, def)
     quote
-        const $esym = Constant{$qsym}()
-        export $esym
-        Base.float(::Constant{$qsym}) = $val * $unit
-        Base.float(FT::DataType, ::Constant{$qsym}) = FT($val) * $eunit
-        $_bigconvert
-        Base.big(x::Constant{$qsym}) = _big(x) * $eunit
-        Base.float(::Type{BigFloat}, x::Constant{$qsym}) = big(x)
+        $(_constant_begin(qname, ename, esym, eunit, val, _bigconvert))
 
-        Measurements.measurement(::Type{Float64}, ::Constant{$qsym}) = $(esc(measure64))
-        Measurements.measurement(::Type{BigFloat}, ::Constant{$qsym}) = $(esc(measurebig))
-        Measurements.measurement(FT::DataType, x::Constant{$qsym}) =
-            convert(Measurement{FT}, ustrip(measurement(x))) * $eunit
-        Measurements.measurement(::Constant{$qsym}) = measurement(Float64, $esym)
+        Measurements.measurement(::Type{Float64},
+                                 ::PhysicalConstant{$qname,T,D,U}) where {T,D,U} =
+                                     $(esc(measure64))
+        Measurements.measurement(::Type{BigFloat},
+                                 ::PhysicalConstant{$qname,T,D,U}) where {T,D,U} =
+                                     $(esc(measurebig))
+        Measurements.measurement(FT::DataType,
+                                 x::PhysicalConstant{$qname,T,D,U}) where {T,D,U} =
+                                     convert(Measurement{FT}, ustrip(measurement(x))) * $eunit
 
-        PhysicalConstant.name(::Constant{$qsym})    = $name
-        PhysicalConstant.ref(::Constant{$qsym})     = $reference
-        Unitful.unit(::Constant{$qsym})      = $unit
-        Unitful.dimension(::Constant{$qsym}) = Unitful.dimension($unit)
-
-        @assert isa(ustrip(float($esym)), Float64)
-        @assert isa(ustrip(big($esym)), BigFloat)
-        @assert isa(ustrip(measurement($esym)), Measurement{Float64})
-        @assert isa(ustrip(measurement(Float32, $esym)), Measurement{Float32})
-        @assert ustrip(float(Float64, $esym)) == Float64(ustrip(big($esym)))
-        @assert ustrip(float(Float32, $esym)) == Float32(ustrip(big($esym)))
-        @assert Float64(value(ustrip(measurement(BigFloat, $esym)))) ==
-            value(ustrip(measurement($esym)))
-        @assert Float64(uncertainty(ustrip(measurement(BigFloat, $esym)))) ==
-            uncertainty(ustrip(measurement($esym)))
-        @assert ustrip(big($esym)) == value(ustrip(measurement(BigFloat, $esym)))
+        $(_constant_end(qname, ename, qsym, esc(descr), val, reference, eunit))
     end
-end
-
-function Base.show(io::IO, x::Constant{sym}) where sym
-    println(io, "$(name(x)) ($sym)")
-    println(io, "Value                         = ", float(x))
-    println(io, "Standard uncertainty          = ",
-            iszero(uncertainty(ustrip(measurement(x)))) ? "(exact)" :
-            uncertainty(ustrip(measurement(x))) * unit(x))
-    println(io, "Relative standard uncertainty = ",
-            iszero(uncertainty(ustrip(measurement(x)))) ? "(exact)" :
-            round(uncertainty(ustrip(measurement(x)))/value(ustrip(measurement(x))),
-                  sigdigits=2))
-    print(io,   "Reference                     = ", ref(x))
 end
 
 """
@@ -187,8 +195,10 @@ julia> measurement(Float32, h)
 6.62607e-34 ± 8.1e-42 J s
 ```
 """
-measurement(::Constant)
 
+measurement(::PhysicalConstant)
+
+include("promotion.jl")
 include("codata2019.jl")
 
 end # module
