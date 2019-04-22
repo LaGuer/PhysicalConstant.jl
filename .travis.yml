@@ -59,10 +59,11 @@ jobs:
         - julia --project=@ -e 'using Pkg; Pkg.instantiate()'
         - julia --project=@ -e 'import Pkg; Pkg.add("Documenter")'
         - julia --project=@ -e 'import Pkg; Pkg.add("Measurements")'
-        - julia --project=@ -e 'import Pkg; Pkg.update("Unitful")'
-        - julia --project=@ -e 'import Pkg; Pkg.update("PhysicalConstant")'
+        - julia --project=@ -e 'import Pkg; Pkg.add("Unitful")'
+        - julia --project=@ -e 'import Pkg; Pkg.add("PhysicalConstant")'
 #        - julia --project=@ -e 'import Pkg; Pkg.clone("https://github.com/LaGuer/PhysicalConstant.jl")'
 #        - julia --project=@ -e 'import Pkg; Pkg.build()'
-        - julia --project=@ docs/make.jl
+        - julia --project=@ -e 'import Pkg; Pkg.status()'
+#        - julia --project=@ docs/make.jl
       after_success: skip
 
