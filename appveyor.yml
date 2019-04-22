@@ -28,10 +28,24 @@ notifications:
 install:
   - ps: iex ((new-object net.webclient).DownloadString("https://raw.githubusercontent.com/JuliaCI/Appveyor.jl/version-1/bin/install.ps1"))
 
+
+import Pkg
+Pkg.BinaryProvider.probe_platform_engines!(;verbose=true)
+cmd = Pkg.BinaryProvider.gen_download_cmd("https://github.com/KristofferC/Crayons.jl/archive/v0.5.1.tar.gz", "Crayons.tar.gz")
+run(cmd)
+unpack = Pkg.BinaryProvider.gen_unpack_cmd("Crayons.tar.gz", "Crayons")
+mkdir("Crayons")
+run(unpack)
+
 build_script:
   - echo "%JL_BUILD_SCRIPT%"
   - C:\julia\bin\julia -e "%JL_BUILD_SCRIPT%"
-  - C:\julia\bin\julia -e "import Pkg; Pkg.clone("https://github.com/LaGuer/PhysicalConstant.jl.git")"
+  - C:\julia\bin\julia -e "import Pkg; Pkg.BinaryProvider.probe_platform_engines!(;verbose=true)"
+  - cmd = Pkg.BinaryProvider.gen_download_cmd("https://github.com/LaGuer/PhysicalConstant.jl/archive/v0.0.3.tar.gz", "PhysicalConstant.tar.gz")
+  - unpack = Pkg.BinaryProvider.gen_unpack_cmd("PhysicalConstant.tar.gz", "PhysicalConstant")
+#  - C:\julia\bin\julia -e "import Pkg; Pkg.clone("https://github.com/LaGuer/PhysicalConstant.jl.git")"
+  - mkdir("PhysicalConstant")
+  - run(unpack)
   - C:\julia\bin\julia -e "using InteractiveUtils; versioninfo();
 #    using UUIDs;
 #    before = read(\"Project.toml\", String);
