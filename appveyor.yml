@@ -8,12 +8,11 @@ platform:
   - x86 # 32-bit
   - x64 # 64-bit
 
-# Uncomment the following lines to allow failures on nightly julia
-# (tests will run but not make your overall status red)
+# # Uncomment the following lines to allow failures on nightly julia
+# # (tests will run but not make your overall status red)
 matrix:
   allow_failures:
-  - julia_version: 1
-  - julia_version: nightly
+    - julia_version: nightly
 
 branches:
   only:
@@ -31,44 +30,16 @@ install:
 
 build_script:
   - echo "%JL_BUILD_SCRIPT%"
-  - C:\julia\bin\julia -e "%JL_BUILD_SCRIPT%;
-#  - C:\julia\bin\julia using Pkg;  Pkg.test(\"PhysicalConstant\")"
-#  - C:\julia\bin\julia using Pkg;  Pkg.build(\"Unitful\")"
-#  - C:\julia\bin\julia using Pkg;  Pkg.build(\"Measurements\")"
-#  - C:\julia\bin\julia using Pkg;  Pkg.build(\"PhysicalConstant\")"
-#  - C:\julia\bin\julia -e Pkg.build(\"https://github.com/LaGuer/PhysicalConstant.jl/\")"
-  
+  - C:\julia\bin\julia -e "%JL_BUILD_SCRIPT%"
+  #- C:\julia\bin\julia -e "using Pkg; Pkg.build(Measurements)"
+  - C:\julia\bin\julia -e "using InteractiveUtils; versioninfo();
+    using UUIDs;
+#    before = read(\"Project.toml\", String);
+#    after = replace(before, \"uuid = \\\"44cfe95a-1eb2-52ea-b672-e2afdf69b78f\\\"\" =>
+                            \"uuid = \\\"4d836010-47a6-11e8-12b2-0918962bae33\\\"\");
+#    write(\"Project.toml\", after);
+    import Pkg; Pkg.build()"
 
 test_script:
   - echo "%JL_TEST_SCRIPT%"
   - C:\julia\bin\julia -e "%JL_TEST_SCRIPT%"
-#  - C:\projects\julia\bin\julia -e "versioninfo();
-#      Pkg.rm(\"PhysicalConstant\")"
-
-# # Uncomment to support code coverage upload. Should only be enabled for packages
-# # which would have coverage gaps without running on Windows
-# on_success:
-#   - echo "%JL_CODECOV_SCRIPT%"
-#   - C:\julia\bin\julia -e "%JL_CODECOV_SCRIPT%"
-#install:
-#  - ps: "[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12"
-  # If there's a newer build queued for the same PR, cancel this one
-#  - ps: if ($env:APPVEYOR_PULL_REQUEST_NUMBER -and $env:APPVEYOR_BUILD_NUMBER -ne ((Invoke-RestMethod `
-#        https://ci.appveyor.com/api/projects/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_SLUG/history?recordsNumber=50).builds | `
-#        Where-Object pullRequestId -eq $env:APPVEYOR_PULL_REQUEST_NUMBER)[0].buildNumber) { `
-#        throw "There are newer queued builds for this pull request, failing early." }
-# Download most recent Julia Windows binary
-#  - ps: (new-object net.webclient).DownloadFile(
-#        $env:JULIA_URL,
-#        "C:\projects\julia-binary.exe")
-# Run installer silently, output to C:\projects\julia
-#  - C:\projects\julia-binary.exe /S /D=C:\projects\julia
-
-#build_script:
-# Need to convert from shallow to complete for Pkg.clone to work
-#  - IF EXIST .git\shallow (git fetch --unshallow)
-#  - C:\projects\julia\bin\julia -e "versioninfo();
-#      Pkg.clone(pwd(), \"PhysicalConstant\"); Pkg.build(\"PhysicalConstant\")"
-
-#test_script:
-#  - C:\projects\julia\bin\julia --check-bounds=yes -e "Pkg.test(\"PhysicalConstant\")"
