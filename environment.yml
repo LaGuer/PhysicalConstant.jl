@@ -1,0 +1,5 @@
+dependencies:
+  - pip
+  - pytest
+  - pip:
+      - julia
