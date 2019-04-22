@@ -34,10 +34,10 @@ build_script:
   #- C:\julia\bin\julia -e "using Pkg; Pkg.build(Measurements)"
   - C:\julia\bin\julia -e "using InteractiveUtils; versioninfo();
     using UUIDs;
-#    before = read(\"Project.toml\", String);
+    before = read(\"Project.toml\", String);
 #    after = replace(before, \"uuid = \\\"44cfe95a-1eb2-52ea-b672-e2afdf69b78f\\\"\" =>
 #                            \"uuid = \\\"4d836010-47a6-11e8-12b2-0918962bae33\\\"\");
-#    write(\"Project.toml\", after);
+    write(\"Project.toml\", before);
     import Pkg; Pkg.build()"
 
 test_script:
