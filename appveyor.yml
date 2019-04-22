@@ -31,8 +31,8 @@ install:
 build_script:
   - echo "%JL_BUILD_SCRIPT%"
   - C:\julia\bin\julia -e "%JL_BUILD_SCRIPT%"
-  - C:\julia\bin\julia -e "import Pkg; Pkg.clone(%https://github.com/LaGuer/PhysicalConstant.jl%)"
-#  - C:\julia\bin\julia -e "using InteractiveUtils; versioninfo();
+  - C:\julia\bin\julia -e "import Pkg; Pkg.clone("https://github.com/LaGuer/PhysicalConstant.jl")"
+  - C:\julia\bin\julia -e "using InteractiveUtils; versioninfo();
 #    using UUIDs;
 #    before = read(\"Project.toml\", String);
 #    after = replace(before, \"uuid = \\\"44cfe95a-1eb2-52ea-b672-e2afdf69b78f\\\"\" =>
