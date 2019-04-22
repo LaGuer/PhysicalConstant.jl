@@ -13,14 +13,14 @@ import PhysicalConstant: @constant, @derived_constant
           1.2e-20, BigFloat(12)/BigFloat(1_000_000_000_000_000_000_000), "CODATA 2019")
 @constant(BohrRadius, a_0, "Bohr radius", 0.529_177_210_67e-10,
           BigFloat(52_917_721_067)/BigFloat(1_000_000_000_000_000_000_000), m,
-          1.2e-20, BigFloat(12)/BigFloat(1_000_000_000_000_000_000_000), "CODATA 2014")
+          1.2e-20, BigFloat(12)/BigFloat(1_000_000_000_000_000_000_000), "CODATA 2019")
 @constant(StandardAtmosphere, atm, "Standard atmosphere", 101_325.0, BigFloat(101_325), Pa,
           0.0, BigFloat(0), "CODATA 2019")
 @constant(WienWavelengthDisplacementLawConstant, b, "Wien wavelength displacement law constant",
           2.897_7729e-3, BigFloat(28_977_729)/BigFloat(10_000_000_000), m * K,
           1.7e-9, BigFloat(17)/BigFloat(10_000_000_000), "CODATA 2019")
 @constant(SpeedOfLightInVacuum, c_0, "Speed of light in vacuum", 299_792_458.0,
-          BigFloat(299_792_458.0), m / s, 0.0, BigFloat(0), "CODATA 2014")
+          BigFloat(299_792_458.0), m / s, 0.0, BigFloat(0), "CODATA 2019")
 @constant(MagneticConstant, µ_0, "Magnetic constant", 1.2566370614359173e-6,
           4*big(pi)/BigFloat(10_000_000), N * A^-2, 0.0, BigFloat(0.0),
           "CODATA 2019")
@@ -29,7 +29,7 @@ import PhysicalConstant: @constant, @derived_constant
           0.0, BigFloat(0.0), "CODATA 2019")
 @constant(ElementaryCharge, e, "Elementary charge", 1.602_176_6208e-19,
           big(16_021_766_208)/100_000_000_000_000_000_000_000_000_000,
-          C, 9.8e-28, big(98)/100_000_000_000_000_000_000_000_000_000, "CODATA 2014")
+          C, 9.8e-28, big(98)/100_000_000_000_000_000_000_000_000_000, "CODATA 2019")
 @constant(NewtonianConstantOfGravitation, G, "Newtonian constant of gravitation",
           6.674_08e-11, big(667_408)/big(10_000_000_000_000_000), m^3 * kg^-1 * s^-2,
           3.1e-15, big(31)/big(10_000_000_000_000_000), "CODATA 2019")
@@ -44,7 +44,7 @@ import PhysicalConstant: @constant, @derived_constant
                   measurement(h)/2pi, measurement(BigFloat, h)/(2 * big(pi)), "CODATA 2019")
 @constant(BoltzmannConstant, k_B, "Boltzmann constant", 1.380_648_52e-23,
           BigFloat(138_064_852)/BigFloat(10_000_000_000_000_000_000_000_000_000_000), J * K^-1,
-          7.9e-30, BigFloat(79)/BigFloat(10_000_000_000_000_000_000_000_000_000_000), "CODATA 2014")
+          7.9e-30, BigFloat(79)/BigFloat(10_000_000_000_000_000_000_000_000_000_000), "CODATA 2019")
 @constant(BohrMagneton, µ_B, "Bohr magneton", 927.400_9994e-26,
           BigFloat(9274_009_994)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000),
           J * T^-1, 5.7e-32,
@@ -99,14 +99,15 @@ import PhysicalConstant: @constant, @derived_constant
           376.73031346177066, BigFloat(1199_169_832)/BigFloat(10_000_000) * big(pi), Ω, 0,
           BigFloat(0.0), "CODATA 2019")
 @derived_constant(ReducedComptonElectronWavelength, ƛ_e, "Reduced Compton Electron Wavelength",
-                  1.380_648_52e-23, ustrip(big(ħ))/(c * big(m_e)), Unitful.NoUnits,
-                  measurement(ħ)/(c * m_e), measurement(BigFloat, ħ)/(c * big(m_e)), "CODATA 2019")
+                  1.380_648_52e-23, ustrip(big(ħ))/(c_0 * big(m_e)), Unitful.NoUnits,
+                  measurement(ħ)/(c_0 * m_e), measurement(BigFloat, ħ)/(c_0 * big(m_e)), "CODATA 2019")
 @constant(FMSanchezConstantOfGravitation, G_s, "F. M. Sanchez Constant of Gravitation", 6.675_45e-11,
           big(667_545)/big(10_000_000_000_000_000), m^3 * kg^-1 * s^-2,
           3.1e-15, big(31)/big(10_000_000_000_000_000), "F. M. Sanchez")
 @constant(CMBTemperature, Θ, "F. M. Sanchez CMB temperature (K)", 2.725_820_831, BigFloat(2725_820_831), K^-1,
           0.0, BigFloat(0.0), "F. M. Sanchez")
-@constant(Gravitational Velocity, C_0, "Gravitational Velocity in interstellar vacuum", 3.699_3e44, BigFloat(369_930_000_000_000_000_000_000_000_000_000_000_000_000_000), m / s,
+@constant(Gravitational Velocity, C_0, "Gravitational Velocity in interstellar vacuum", 3.699_3e44, 
+          BigFloat(369_930_000_000_000_000_000_000_000_000_000_000_000_000_000), m / s,
           0.0, BigFloat(0), "Maruani J (2016) The Dirac electron: from quantum chemistry to holistic cosmology")
 
 end # module CODATA2019
