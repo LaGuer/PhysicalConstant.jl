@@ -1,4 +1,4 @@
-# Documentation: http://docs.travis-ci.com/user/languages/julia/
+# Documentation:  http://docs.travis-ci.com/user/languages/julia/
 language: julia
 os:
   - linux
@@ -6,19 +6,53 @@ os:
 julia:
   - 0.7
   - 1.0
+  - 1.1
   - nightly
 matrix:
-  allow_failures:
+  allowed_failures:
     - julia: nightly
+#    - julia: 1.0
+# Work around a Travis bug
 git:
   depth: 999999
 notifications:
   email: false
+sudo: false
+#addons:
+#    apt_packages:
+#        - gfortran
 env:
   matrix:
     - JULIA_PhysicalConstant_BUILD_SOURCE=true
-    - JULIA_PhysicalConstant_BUILD_SOURCE=false
+#    - JULIA_MathPhysicalConstants_BUILD_SOURCE=false
+before_install:
+  - pwd
+  - export JL_PKG=PhysicalConstant
+#  - ls
+#  - cd PhysicalConstant.jl
+#  - git clone https://github.com/LaGuer/PhysicalConstant.jl.git PhysicalConstant.jl
+#  - pwd
+  - if [ ${TRAVIS_OS_NAME} == "osx" ]; then brew update >/dev/null 2>&1; fi
+script:
+  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
+#  - julia -e 'Pkg.clone("https://github.com/LaGuer/PhysicalConstant.jl"); Pkg.build("PhysicalConstant")'
+#  - julia -e 'Pkg.build("PhysicalConstant")'
+#  - julia -e 'Pkg.test("PhysicalConstant"; coverage=false)'
 after_success:
- - julia -e 'import Pkg; Pkg.add("Coverage"); using Coverage; Coveralls.submit(process_folder()); Codecov.submit(process_folder())'
- - julia -e 'cd(Pkg.dir("PhysicalConstant")); ps=Pkg.PackageSpec(name="Documenter", version="0.19"); Pkg.add(ps); Pkg.pin(ps); include(joinpath("docs", "make.jl"))'
-
+  - echo $TRAVIS_JULIA_VERSION
+  - julia -e 'import Pkg; Pkg.add("Coverage"); using Coverage; Coveralls.submit(process_folder()); Codecov.submit(process_folder())'
+#  - julia -e 'cd(Pkg.dir("MathPhysicalConstants")); ps=Pkg.PackageSpec(name="Documenter", version="0.21"); Pkg.add(ps); Pkg.pin(ps); include(joinpath("docs", "make.jl"))'
+  - julia -e 'cd(Pkg.dir("PhysicalConstant")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
+jobs:
+  include:
+    - stage: "Documentation"
+      julia: 1.0
+      os: linux
+      script:
+        - julia --color=yes -e 'using Pkg; Pkg.build()'
+#        - julia --check-bounds=yes --color=yes -e 'using Pkg; Pkg.test(coverage=true)'
+        - julia --project=@ -e 'using Pkg; Pkg.instantiate()'
+        - julia --project=@ -e 'import Pkg; Pkg.add("Documenter")'
+        - julia --project=@ -e 'import Pkg; Pkg.add("PhysicalConstant")'
+        - julia --project=@ docs/make.jl
+      after_success: skip
