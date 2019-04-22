@@ -48,16 +48,20 @@ jobs:
   include:
     - stage: "Documentation"
       julia: nightly
-      os: linux
-      os: osx
+      os: 
+        - linux
+        - osx
+      allowed_failures:
+        - julia: nightly
       script:
-        - julia --color=yes -e 'using Pkg; Pkg.build()'
+#        - julia --color=yes -e 'using Pkg; Pkg.build()'
 #        - julia --check-bounds=yes --color=yes -e 'using Pkg; Pkg.test(coverage=true)'
         - julia --project=@ -e 'using Pkg; Pkg.instantiate()'
         - julia --project=@ -e 'import Pkg; Pkg.add("Documenter")'
         - julia --project=@ -e 'import Pkg; Pkg.add("Measurements")'
-        - julia --project=@ -e 'import Pkg; Pkg.clone("https://github.com/LaGuer/PhysicalConstant.jl")'
-        - julia --project=@ -e 'import Pkg; Pkg.build()'
+        - julia --project=@ -e 'import Pkg; Pkg.update("PhysicalConstant")'
+#        - julia --project=@ -e 'import Pkg; Pkg.clone("https://github.com/LaGuer/PhysicalConstant.jl")'
+#        - julia --project=@ -e 'import Pkg; Pkg.build()'
         - julia --project=@ docs/make.jl
       after_success: skip
 
