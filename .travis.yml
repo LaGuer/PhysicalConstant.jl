@@ -59,3 +59,5 @@ jobs:
         - julia --project=@ -e 'import Pkg; Pkg.add("PhysicalConstant")'
         - julia --project=@ docs/make.jl
       after_success: skip
+      allowed_failures:
+        - julia: 1.0
