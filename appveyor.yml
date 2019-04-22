@@ -43,7 +43,7 @@ build_script:
 #    after = replace(before, \"uuid = \\\"44cfe95a-1eb2-52ea-b672-e2afdf69b78f\\\"\" =>
 #                            \"uuid = \\\"4d836010-47a6-11e8-12b2-0918962bae33\\\"\");
 #    write(\"Project.toml\", before);
-  - C:\julia\bin\julia -e "import Pkg; Pkg.update("PhysicalConstant")"
+#  - C:\julia\bin\julia -e "import Pkg; Pkg.update("PhysicalConstant")"
 #  - C:\julia\bin\julia -e "using PhysicalConstant.CODATA2019; CODATA2019.c_0"
   - C:\julia\bin\julia -e "import Pkg; Pkg.build()"
   - C:\julia\bin\julia -e "import Pkg; Pkg.status()"
