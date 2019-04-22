@@ -31,12 +31,12 @@ install:
 build_script:
   - echo "%JL_BUILD_SCRIPT%"
   - C:\julia\bin\julia -e "%JL_BUILD_SCRIPT%"
-  - C:\julia\bin\julia -e "import Pkg; Pkg.BinaryProvider.probe_platform_engines!(;verbose=true)"
-  - C:\julia\bin\julia -e "cmd = Pkg.BinaryProvider.gen_download_cmd("https:////github.com/LaGuer/PhysicalConstant.jl/archive/v0.0.3.tar.gz", "PhysicalConstant.tar.gz")"
-  - C:\julia\bin\julia -e "unpack = Pkg.BinaryProvider.gen_unpack_cmd("PhysicalConstant.tar.gz", "PhysicalConstant")"
-#  - C:\julia\bin\julia -e "import Pkg; Pkg.clone("https://github.com/LaGuer/PhysicalConstant.jl.git")"
-  - C:\julia\bin\julia -e "mkdir("PhysicalConstant")"
-  - C:\julia\bin\julia -e "run(unpack)"
+#  - C:\julia\bin\julia -e "import Pkg; Pkg.BinaryProvider.probe_platform_engines!(;verbose=true)"
+#  - C:\julia\bin\julia -e "cmd = Pkg.BinaryProvider.gen_download_cmd("https:////github.com/LaGuer/PhysicalConstant.jl/archive/v0.0.3.tar.gz", "PhysicalConstant.tar.gz")"
+#  - C:\julia\bin\julia -e "unpack = Pkg.BinaryProvider.gen_unpack_cmd("PhysicalConstant.tar.gz", "PhysicalConstant")"
+  - C:\julia\bin\julia -e "import Pkg; Pkg.clone(\`"https://github.com/LaGuer/PhysicalConstant.jl.git\`")"
+#  - C:\julia\bin\julia -e "mkdir("PhysicalConstant")"
+#  - C:\julia\bin\julia -e "run(unpack)"
   - C:\julia\bin\julia -e "using InteractiveUtils; versioninfo();
 #    using UUIDs;
 #    before = read(\"Project.toml\", String);
@@ -44,8 +44,9 @@ build_script:
 #                            \"uuid = \\\"4d836010-47a6-11e8-12b2-0918962bae33\\\"\");
 #    write(\"Project.toml\", before);
   - C:\julia\bin\julia -e "import Pkg; Pkg.update("PhysicalConstant")"
-  - C:\julia\bin\julia -e "using PhysicalConstant.CODATA2019; CODATA2019.c_0"
+#  - C:\julia\bin\julia -e "using PhysicalConstant.CODATA2019; CODATA2019.c_0"
   - C:\julia\bin\julia -e "import Pkg; Pkg.build()"
+  - C:\julia\bin\julia -e "import Pkg; Pkg.status()"
 
 test_script:
   - echo "%JL_TEST_SCRIPT%"
