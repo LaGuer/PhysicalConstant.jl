@@ -1,4 +1,5 @@
-using Documenter, Measurements, PhysicalConstant
+using Documenter, PhysicalConstant
+using FileIO
 
 makedocs(
     modules = [PhysicalConstant],
@@ -21,6 +22,6 @@ deploydocs(
     julia = "nightly",
     repo = "github.com/LaGuer/PhysicalConstant.jl.git",
     target = "build",
-    deps = nothing,
+    deps = Deps.pip("Tornado>=4.0.0,<5.0.0", "mkdocs==0.17.5", "mkdocs-material==2.9.4", "python-markdown-math"),
     make = nothing,
 )
