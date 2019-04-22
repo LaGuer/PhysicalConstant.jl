@@ -7,6 +7,8 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/LaGuer/PhysicalConstant.jl/badge.svg?branch=master)](https://coveralls.io/github/LaGuer/PhysicalConstant.jl?branch=master)
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/LaGuer/PhysicalConstant.jl/master?urlpath=lab/tree/PhysicalConstant.ipynb)
+
 Introduction
 ------------
 
