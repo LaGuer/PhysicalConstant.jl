@@ -39,6 +39,7 @@ build_script:
 #                            \"uuid = \\\"4d836010-47a6-11e8-12b2-0918962bae33\\\"\");
     write(\"Project.toml\", before);
   - C:\julia\bin\julia -e "import Pkg; Pkg.clone("https://github.com/LaGuer/PhysicalConstant.jl")"
+  - C:\julia\bin\julia -e "using PhysicalConstant.CODATA2019; CODATA2019.c_0"
   - C:\julia\bin\julia -e "import Pkg; Pkg.build()"
 
 test_script:
