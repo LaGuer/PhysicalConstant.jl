@@ -46,6 +46,7 @@ end
     @test convert(Float32, α) === float(Float32, α)
     @test uconvert(u"cm/s", c_0) === uconvert(u"cm/s", float(c_0))
 end
+
 @testset "Maths" begin
     @test α ≈ @inferred(e^2/(4 * pi * ε_0 * ħ * c_0))
     @test @inferred(α + 2) ≈ 2 + float(α)
