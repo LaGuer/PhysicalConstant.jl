@@ -7,7 +7,7 @@ import Unitful: AbstractQuantity
 
 # The type
 
-struct PhysicalConstant{name,T,D,U} <: AbstractQuantity{T,D,U} end
+struct Constant{name,T,D,U} <: AbstractQuantity{T,D,U} end
 
 # Functions composing the building blocks of the macros
 
@@ -18,42 +18,42 @@ function _constant_preamble(name, sym, unit, def)
     qsym = esc(Expr(:quote, sym))
     eunit = esc(unit)
     _bigconvert = isa(def,Symbol) ? quote
-        function _big(::PhysicalConstant{$qname,T,D,U}) where {T,D,U}
+        function _big(::Constant{$qname,T,D,U}) where {T,D,U}
             c = BigFloat()
             ccall(($(string("mpfr_const_", def)), :libmpfr),
                   Cint, (Ref{BigFloat}, Int32), c, MPFR.ROUNDING_MODE[])
             return c
         end
     end : quote
-        _big(::PhysicalConstant{$qname,T,D,U}) where {T,D,U} = $(esc(def))
+        _big(::Constant{$qname,T,D,U}) where {T,D,U} = $(esc(def))
     end
     return ename, qname, esym, qsym, eunit, _bigconvert
 end
 
 function _constant_begin(qname, ename, esym, eunit, val, _bigconvert)
     quote
-        const $ename = PhysicalConstant{$qname,Float64,dimension($eunit),typeof($eunit)}()
+        const $ename = Constant{$qname,Float64,dimension($eunit),typeof($eunit)}()
         export $ename
         const $esym = $ename
 
-        Base.float(::PhysicalConstant{$qname,T,D,U}) where {T,D,U} = $val * $eunit
-        Base.float(FT::DataType, ::PhysicalConstant{$qname,T,D,U}) where {T,D,U} =
+        Base.float(::Constant{$qname,T,D,U}) where {T,D,U} = $val * $eunit
+        Base.float(FT::DataType, ::Constant{$qname,T,D,U}) where {T,D,U} =
             FT($val) * $eunit
         $_bigconvert
-        Base.big(x::PhysicalConstant{$qname,T,D,U}) where {T,D,U} = _big(x) * $eunit
-        Base.float(::Type{BigFloat}, x::PhysicalConstant{$qname,T,D,U}) where {T,D,U} = big(x)
+        Base.big(x::Constant{$qname,T,D,U}) where {T,D,U} = _big(x) * $eunit
+        Base.float(::Type{BigFloat}, x::Constant{$qname,T,D,U}) where {T,D,U} = big(x)
     end
 end
 
 function _constant_end(qname, ename, qsym, descr, val, reference, eunit)
     quote
-        Measurements.measurement(::PhysicalConstant{$qname,T,D,U}) where {T,D,U} =
+        Measurements.measurement(::Constant{$qname,T,D,U}) where {T,D,U} =
             measurement(Float64, $ename)
 
-        Unitful.unit(::PhysicalConstant{$qname,T,D,U}) where {T,D,U}      = $eunit
-        Unitful.dimension(::PhysicalConstant{$qname,T,D,U}) where {T,D,U} = D
+        Unitful.unit(::Constant{$qname,T,D,U}) where {T,D,U}      = $eunit
+        Unitful.dimension(::Constant{$qname,T,D,U}) where {T,D,U} = D
 
-        function Base.show(io::IO, x::PhysicalConstant{$qname,T,D,U}) where {T,D,U}
+        function Base.show(io::IO, x::Constant{$qname,T,D,U}) where {T,D,U}
             unc = uncertainty(ustrip(measurement($ename)))
             println(io, $descr, " (", $qsym, ")")
             println(io, "Value                         = ", float($ename))
@@ -80,7 +80,7 @@ end
 
 # Currently AbstractQuantity defines some operations in terms of the inner field `val`.
 
-function Base.getproperty(c::PhysicalConstant{s,T,D,U}, sym::Symbol) where {s,T,D,U}
+function Base.getproperty(c::Constant{s,T,D,U}, sym::Symbol) where {s,T,D,U}
     if sym === :val
         return ustrip(float(T, c))
     else # fallback to getfield
@@ -132,13 +132,13 @@ macro derived_constant(name, sym, descr, val, def, unit, measure64, measurebig, 
         $(_constant_begin(qname, ename, esym, eunit, val, _bigconvert))
 
         Measurements.measurement(::Type{Float64},
-                                 ::PhysicalConstant{$qname,T,D,U}) where {T,D,U} =
+                                 ::Constant{$qname,T,D,U}) where {T,D,U} =
                                      $(esc(measure64))
         Measurements.measurement(::Type{BigFloat},
-                                 ::PhysicalConstant{$qname,T,D,U}) where {T,D,U} =
+                                 ::Constant{$qname,T,D,U}) where {T,D,U} =
                                      $(esc(measurebig))
         Measurements.measurement(FT::DataType,
-                                 x::PhysicalConstant{$qname,T,D,U}) where {T,D,U} =
+                                 x::Constant{$qname,T,D,U}) where {T,D,U} =
                                      convert(Measurement{FT}, ustrip(measurement(x))) * $eunit
 
         $(_constant_end(qname, ename, qsym, esc(descr), val, reference, eunit))
@@ -146,11 +146,11 @@ macro derived_constant(name, sym, descr, val, def, unit, measure64, measurebig, 
 end
 
 """
-    float(::PhysicalConstant{name,T,D,U}) where {T,D,U}
-    float(FloatType, ::PhysicalConstant{name,T,D,U}) where {T,D,U}
+    float(::Constant{name,T,D,U}) where {T,D,U}
+    float(FloatType, ::Constant{name,T,D,U}) where {T,D,U}
 
 Return the physical constant as a `Quantity` with the floating type optionally specified by
-`FloatType`, `Float64` by default.
+`FloatType`, `Float64` being set by default.
 
 ```jldoctest
 julia> using PhysicalConstants.CODATA2019: Gg
@@ -169,14 +169,14 @@ julia> float(Float32, Gg)
 6.67408f-11 m^3 kg^-1 s^-2
 ```
 """
-float(::PhysicalConstant)
+float(::Constant)
 
 """
-    measurement(::PhysicalConstant{name,T,D,U}) where {T,D,U}
-    measurement(FloatType, ::PhysicalConstant{name,T,D,U}) where {T,D,U}
+    measurement(::Constant{name,T,D,U}) where {T,D,U}
+    measurement(FloatType, ::Constant{name,T,D,U}) where {T,D,U}
 
 Return the physical constant as a `Quantity` with standard uncertainty.  The floating-point
-precision can be optionally specified with the `FloatType`, `Float64` by default.
+precision can be optionally specified with the `FloatType`, `Float64` is the default.
 
 ```jldoctest
 julia> using PhysicalConstant.CODATA2019, Measurements
@@ -196,7 +196,7 @@ julia> measurement(Float32, h)
 6.62607e-34 ± 8.1e-42 J s
 ```
 """
-measurement(::PhysicalConstant)
+measurement(::Constant)
 
 include("promotion.jl")
 include("codata2019.jl")
