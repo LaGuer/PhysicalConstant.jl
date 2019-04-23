@@ -44,9 +44,9 @@ import PhysicalConstant: @constant, @derived_constant
 @derived_constant(PlanckConstantOver2pi, ħ, "Planck constant over 2pi",
                   1.0545718001391127e-34, ustrip(big(h))/(2 * big(pi)), J * s,
                   measurement(h)/2pi, measurement(BigFloat, h)/(2 * big(pi)), "CODATA 2019")
-#@derived_constant(ReducedComptonElectronWavelength, ƛ_e, "Reduced Compton Electron Wavelength",
-#                  1.380_648_52e-23, ustrip(big(ħ))/(c_0 * big(m_e)), Unitful.NoUnits,
-#                  measurement(ħ)/(c_0 * m_e), measurement(BigFloat, ħ)/(c_0 * big(m_e)), "CODATA 2019")
+@derived_constant(RedComptonElectronWavlgth, ƛ_e, "Reduced Compton Electron Wavelength",
+                  1.380_648_52e-23, ustrip(big(ħ))/(c_0 * big(m_e)), Unitful.NoUnits,
+                  measurement(ħ)/(c_0 * m_e), measurement(BigFloat, ħ)/(c_0 * big(m_e)), "CODATA 2019")
 @constant(BoltzmannConstant, k_B, "Boltzmann constant", 1.380_648_52e-23,
           BigFloat(138_064_852)/BigFloat(10_000_000_000_000_000_000_000_000_000_000), J * K^-1,
           7.9e-30, BigFloat(79)/BigFloat(10_000_000_000_000_000_000_000_000_000_000), "CODATA 2019")
