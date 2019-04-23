@@ -1,9 +1,12 @@
 # PhysicalConstant.jl
 
-| **Documentation**                       | [**Package Evaluator**][pkgeval-link] | **Build Status**                          | **Code Coverage**               |
+| **Documentation**                       |          **Supported OS**             | **Build Status**                          | **Code Coverage**               |
 |:---------------------------------------:|:-------------------------------------:|:-----------------------------------------:|:-------------------------------:|
-| [![][docs-stable-img]][docs-stable-url] | [![][pkg-0.0.2-img]][pkg-0.0.2-url]       | [![Build Status][travis-img]][travis-url] | [![][coveral-img]][coveral-url] |
-| [![][docs-latest-img]][docs-latest-url] | [![][pkg-0.0.3-img]][pkg-0.0.3-url]       | [![Build Status][appvey-img]][appvey-url] | [![][codecov-img]][codecov-url] |
+| [![][docs-stable-img]][docs-stable-url] | [![osx][pkg-0.0.2-img]][pkg-0.0.2-url]       | [![Build Status][travis-img]][travis-url] | [![][coveral-img]][coveral-url] |
+| [![][docs-latest-img]][docs-latest-url] | [![linux][pkg-0.0.3-img]][pkg-0.0.3-url]       | [![Build Status][appvey-img]][appvey-url] | [![][codecov-img]][codecov-url] |
+| [![][docs-latest-img]][docs-latest-url] | [![windows][pkg-0.0.3-img]][pkg-0.0.3-url]       | [![Build Status][appvey-img]][appvey-url] | [![][codecov-img]][codecov-url] |
+
+[![codecov](https://codecov.io/gh/LaGuer/PhysicalConstant.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/LaGuer/PhysicalConstant.jl)
 
 [![Coverage Status](https://coveralls.io/repos/github/LaGuer/PhysicalConstant.jl/badge.svg?branch=master)](https://coveralls.io/github/LaGuer/PhysicalConstant.jl?branch=master)
 
@@ -33,8 +36,13 @@ installed with
 In a Julia session run the command
 
 ```julia
-pkg> add https://github.com/laguer/PhysicalConstant.jl
+pkg> clone https://github.com/laguer/PhysicalConstant.jl
 ```
+
+```julia
+pkg> build PhysicalConstant
+```
+
 
 Usage
 -----
@@ -42,7 +50,7 @@ Usage
 You can load the package as usual with `using PhysicalConstant` but this module
 does not provide anything useful for the end-users.  You most probably want to
 directly load the submodule with the dataset you are interested in.  For
-example, for CODATA 2019 load `PhysicalConstants.CODATA2019`:
+example, for CODATA 2019 load `PhysicalConstant.CODATA2019`:
 
 ```julia
 julia> using PhysicalConstant.CODATA2019
@@ -118,7 +126,7 @@ julia> measurement(BigFloat, ħ)
 julia> measurement(BigFloat, ħ) / (measurement(BigFloat, h) / (2 * big(pi)))
 1.0 ± 0.0
 ```
-Inserting unicode (e.g. Greek letters)
+Inserting unicode (e.g. Math Symbols, Greek letters)
 --------------------------------------
 
 Julia supports the use of unicode characters such as α and β in your code
