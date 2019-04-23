@@ -9,7 +9,7 @@ import PhysicalConstant: @constant, @derived_constant
           BigFloat(72_973_525_664)/BigFloat(10_000_000_000_000), Unitful.NoUnits,
           1.7e-12, BigFloat(17)/BigFloat(10_000_000_000_000), "CODATA 2019")
 @constant(BareHydrogenRadius, r_0, "Bare Hydrogen radius", 0.529_177_210_30e-10,
-          BigFloat(5291_772_103)/BigFloat(1_000_000_000_000_000_000_000), u"m",
+          BigFloat(5291_772_103)/BigFloat(1_000_000_000_000_000_000_000), m,
           1.2e-20, BigFloat(12)/BigFloat(1_000_000_000_000_000_000_000), "CODATA 2019")
 @constant(BohrRadius, a_0, "Bohr radius", 0.529_177_210_67e-10,
           BigFloat(52_917_721_067)/BigFloat(1_000_000_000_000_000_000_000), m,
