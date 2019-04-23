@@ -39,6 +39,9 @@ import PhysicalConstant: @constant, @derived_constant
 @derived_constant(PlanckConstantOver2pi, ħ, "Planck constant over 2pi",
                   1.0545718001391127e-34, ustrip(big(h))/(2 * big(pi)), J * s,
                   measurement(h)/2pi, measurement(BigFloat, h)/(2 * big(pi)), "CODATA 2019")
+@derived_constant(ReducedComptonElectronWavelength, ƛ_e, "Reduced Compton Electron Wavelength",
+                  1.380_648_52e-23, ustrip(big(ħ))/(c_0 * big(ElectronMass)), Unitful.NoUnits,
+                  measurement(ħ)/(c_0 * ElectronMass), measurement(BigFloat, ħ)/(c_0 * big(ElectronMass)), "CODATA 2019")
 @constant(BoltzmannConstant, k_B, "Boltzmann constant", 1.380_648_52e-23,
           BigFloat(138_064_852)/BigFloat(10_000_000_000_000_000_000_000_000_000_000), J * K^-1,
           7.9e-30, BigFloat(79)/BigFloat(10_000_000_000_000_000_000_000_000_000_000), "CODATA 2019")
@@ -48,6 +51,11 @@ import PhysicalConstant: @constant, @derived_constant
           BigFloat(57)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000), "CODATA 2019")
 @constant(ElectronMass, m_e, "Electron mass", 9.109_383_56e-31,
           BigFloat(910_938_356)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
+          kg, 1.1e-38,
+          BigFloat(11)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
+          "CODATA 2019")
+@constant(HydrogenMass, m_H, "Hydrogen mass", 1.673_723_6e-27,
+          BigFloat(167_372_36)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
           kg, 1.1e-38,
           BigFloat(11)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
           "CODATA 2019")
@@ -95,9 +103,5 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(CharacteristicImpedanceOfVacuum, Z_0, "Characteristic impedance of vacuum",
           376.73031346177066, BigFloat(1199_169_832)/BigFloat(10_000_000) * big(pi), Ω, 0,
           BigFloat(0.0), "CODATA 2019")
-@derived_constant(ReducedComptonElectronWavelength, ƛ_e, "Reduced Compton Electron Wavelength",
-                  1.380_648_52e-23, ustrip(big(PlanckConstantOver2pi))/(c_0 * big(ElectronMass)), Unitful.NoUnits,
-                  measurement(PlanckConstantOver2pi)/(c_0 * ElectronMass), measurement(BigFloat, PlanckConstantOver2pi)/(c_0 * big(ElectronMass)), "CODATA 2019")
-
 end
 # module CODATA2019
