@@ -4,17 +4,15 @@ using FileIO
 makedocs(
     modules = [PhysicalConstant],
     clean = false,
-    format = :html,
-    sitename = "PhysicalConstant.jl",
+    format = Documenter.HTML(),
+    sitename = "PhysicalConstant",
     authors = "La Guer.",
     pages    = Any[
         "Introduction" => "index.md",
         "Installation" => "installation.md",
         "Usage"        => "usage.md",
         "Examples"     => "examples.md",
-        "Performance"  => "performance.md",
-        "Development"  => "todo.md",
-        "Appendix"     => "appendix.md",
+        "api"          => "api.md",
     ]
 )
 
