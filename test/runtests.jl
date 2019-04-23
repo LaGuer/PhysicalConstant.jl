@@ -39,7 +39,7 @@ end
 
 @testset "Maths" begin
     @test α ≈ @inferred(e^2/(4 * pi * ε_0 * ħ * c_0))
-    @test @inferred(ħ / (c_0 * m_e)) ≈ (ħ / float(c_0 * m_e))
+    @test @inferred(ħ / (c_0 * ElectronMass)) ≈ (ħ / float(c_0 * ElectronMass))
     @test @inferred(α + 2) ≈ 2 + float(α)
     @test @inferred(5 + α) ≈ float(α) + 5
     @test @inferred(α + 2.718) ≈ 2.718 + float(α)
