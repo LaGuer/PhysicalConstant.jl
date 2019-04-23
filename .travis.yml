@@ -66,6 +66,7 @@ jobs:
         - julia --project=@ --color=yes -e 'using Pkg; Pkg.build()'
         - julia --project=@ -e 'import Pkg; Pkg.status()'
 #        - julia --project=/docs -e 'import Pkg; Pkg.status()'
+        - julia --project=@ -e 'import Pkg; Pkg.add("PhysicalConstant")'
         - julia --project=@ docs/make.jl
       after_success: skip
 
