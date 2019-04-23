@@ -21,7 +21,7 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(MagneticConstant, µ_0, "Magnetic constant", 1.2566370614359173e-6,
           4*big(pi)/BigFloat(10_000_000), N * A^-2, 0.0, BigFloat(0.0),
           "CODATA 2019")
-@constant(ElectricConstant, ε_0, "Electric constant", 8.854187817620389e-12,
+@constant(ElectricConstant, ε_0, "Electric constant Permittivity", 8.854187817620389e-12,
           inv(ustrip(big(µ_0)) * ustrip(big(c_0))^2), F * m^-1,
           0.0, BigFloat(0.0), "CODATA 2019")
 @constant(ElementaryCharge, e, "Elementary charge", 1.602_176_6208e-19,
@@ -32,6 +32,11 @@ import PhysicalConstant: @constant, @derived_constant
           3.1e-15, big(31)/big(10_000_000_000_000_000), "CODATA 2019")
 @constant(StandardAccelerationOfGravitation, g_n, "Standard acceleration of gravitation",
           9.806_65, big(980_665)/big(100_000), m * s^-2, 0, 0, "CODATA 2019")
+@constant(ElectronMass, m_e, "Electron mass", 9.109_383_56e-31,
+          BigFloat(910_938_356)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
+          kg, 1.1e-38,
+          BigFloat(11)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
+          "CODATA 2019")
 @constant(PlanckConstant, h, "Planck constant", 6.626_070_040e-34,
           6_626_070_040/10_000_000_000_000_000_000_000_000_000_000_000_000_000_000,
           J * s, 8.1e-42, 81/10_000_000_000_000_000_000_000_000_000_000_000_000_000_000,
@@ -49,11 +54,6 @@ import PhysicalConstant: @constant, @derived_constant
           BigFloat(9274_009_994)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000),
           J * T^-1, 5.7e-32,
           BigFloat(57)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000), "CODATA 2019")
-@constant(ElectronMass, m_e, "Electron mass", 9.109_383_56e-31,
-          BigFloat(910_938_356)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
-          kg, 1.1e-38,
-          BigFloat(11)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
-          "CODATA 2019")
 @constant(HydrogenMass, m_H, "Hydrogen mass", 1.673_723_6e-27,
           BigFloat(167_372_36)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
           kg, 1.1e-38,
