@@ -153,7 +153,7 @@ Return the physical constant as a `Quantity` with the floating type optionally s
 `FloatType`, `Float64` by default.
 
 ```jldoctest
-julia> using PhysicalConstant.CODATA2019
+julia> using PhysicalConstants.CODATA2019: Gg
 
 julia> Gg
 Newtonian constant of gravitation (Gg)
@@ -165,7 +165,7 @@ Reference                     = CODATA 2019
 julia> float(Gg)
 6.67408e-11 m^3 kg^-1 s^-2
 
-julia> float(Float32, G)
+julia> float(Float32, Gg)
 6.67408f-11 m^3 kg^-1 s^-2
 ```
 """
@@ -180,6 +180,7 @@ precision can be optionally specified with the `FloatType`, `Float64` by default
 
 ```jldoctest
 julia> using PhysicalConstant.CODATA2019, Measurements
+julia> import PhysicalConstants.CODATA2019: h
 
 julia> h
 Planck constant (h)
@@ -195,7 +196,6 @@ julia> measurement(Float32, h)
 6.62607e-34 ± 8.1e-42 J s
 ```
 """
-
 measurement(::PhysicalConstant)
 
 include("promotion.jl")
