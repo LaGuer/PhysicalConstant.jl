@@ -97,7 +97,7 @@ macro constant(name, sym, descr, val, def, unit, unc, bigunc, reference)
         $(_constant_begin(qname, ename, esym, eunit, val, _bigconvert))
 
         function Measurements.measurement(FT::DataType,
-                                          ::PhysicalConstant{$qname,T,D,U}) where {T,D,U}
+                                          ::Constant{$qname,T,D,U}) where {T,D,U}
             vl = FT($val)
             newder = Measurements.empty_der2(vl)
             if iszero($unc)
@@ -109,7 +109,7 @@ macro constant(name, sym, descr, val, def, unit, unc, bigunc, reference)
             end
         end
         function Measurements.measurement(::Type{BigFloat},
-                                          x::PhysicalConstant{$qname,T,D,U}) where {T,D,U}
+                                          x::Constant{$qname,T,D,U}) where {T,D,U}
             vl = _big(x)
             unc = BigFloat($bigunc)
             newder = Measurements.empty_der2(vl)
