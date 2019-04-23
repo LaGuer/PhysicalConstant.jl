@@ -96,8 +96,8 @@ import PhysicalConstant: @constant, @derived_constant
           376.73031346177066, BigFloat(1199_169_832)/BigFloat(10_000_000) * big(pi), Ω, 0,
           BigFloat(0.0), "CODATA 2019")
 @derived_constant(ReducedComptonElectronWavelength, ƛ_e, "Reduced Compton Electron Wavelength",
-                  1.380_648_52e-23, ustrip(big(ħ))/(c_0 * big(m_e)), Unitful.NoUnits,
-                  measurement(ħ)/(c_0 * m_e), measurement(BigFloat, ħ)/(c_0 * big(m_e)), "CODATA 2019")
+                  1.380_648_52e-23, ustrip(big(ħ))/(c_0 * big(ElectronMass)), Unitful.NoUnits,
+                  measurement(ħ)/(c_0 * ElectronMass), measurement(BigFloat, ħ)/(c_0 * big(ElectronMass)), "CODATA 2019")
 
 end
 # module CODATA2019
