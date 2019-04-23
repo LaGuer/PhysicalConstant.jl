@@ -5,9 +5,9 @@ os:
   - osx
 julia:
   - 0.7
-  - 1.0
+#  - 1.0
   - 1.1
-  - nightly
+#  - nightly
 matrix:
   allowed_failures:
     - julia: nightly
@@ -64,6 +64,7 @@ jobs:
 #        - julia --project=@ -e 'import Pkg; Pkg.clone("https://github.com/LaGuer/PhysicalConstant.jl")'
 #        - julia --project=@ -e 'import Pkg; Pkg.build()'
         - julia --project=@ -e 'import Pkg; Pkg.status()'
+#        - julia --project=/docs -e 'import Pkg; Pkg.status()'
 #        - julia --project=@ docs/make.jl
       after_success: skip
 
