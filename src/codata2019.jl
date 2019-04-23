@@ -21,7 +21,7 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(MagneticConstant, µ_0, "Magnetic constant", 1.2566370614359173e-6,
           4*big(pi)/BigFloat(10_000_000), N * A^-2, 0.0, BigFloat(0.0),
           "CODATA 2019")
-@constant(ElectrictConstant, ε_0, "Electric constant", 8.854187817620389e-12,
+@constant(ElectricConstant, ε_0, "Electric constant", 8.854187817620389e-12,
           inv(ustrip(big(µ_0)) * ustrip(big(c_0))^2), F * m^-1,
           0.0, BigFloat(0.0), "CODATA 2019")
 @constant(ElementaryCharge, e, "Elementary charge", 1.602_176_6208e-19,
@@ -96,8 +96,8 @@ import PhysicalConstant: @constant, @derived_constant
           376.73031346177066, BigFloat(1199_169_832)/BigFloat(10_000_000) * big(pi), Ω, 0,
           BigFloat(0.0), "CODATA 2019")
 @derived_constant(ReducedComptonElectronWavelength, ƛ_e, "Reduced Compton Electron Wavelength",
-                  1.380_648_52e-23, ustrip(big(ħ))/(c_0 * big(ElectronMass)), Unitful.NoUnits,
-                  measurement(ħ)/(c_0 * ElectronMass), measurement(BigFloat, ħ)/(c_0 * big(ElectronMass)), "CODATA 2019")
+                  1.380_648_52e-23, ustrip(big(PlanckConstantOver2pi))/(c_0 * big(ElectronMass)), Unitful.NoUnits,
+                  measurement(PlanckConstantOver2pi)/(c_0 * ElectronMass), measurement(BigFloat, PlanckConstantOver2pi)/(c_0 * big(ElectronMass)), "CODATA 2019")
 
 end
 # module CODATA2019
