@@ -61,6 +61,16 @@ import PhysicalConstant: @constant, @derived_constant
           kg, 2.1e-35,
           BigFloat(21)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000),
           "CODATA 2019")
+@constant(MuonMass, m_m, "Muon mass", 1.836_152_67e-28,
+          BigFloat(1836_152_67)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000),
+          kg, 2.1e-35,
+          BigFloat(21)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000),
+          "CODATA 2019")
+@constant(TauMass, m_t, "Tau mass", 3.167_735_502e-27,
+          BigFloat(3167_735_502)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000),
+          kg, 2.1e-35,
+          BigFloat(21)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000),
+          "CODATA 2019")
 @constant(AtomicMassConstant, m_u, "Atomic mass constant", 1.660_539_040e-27,
           BigFloat(1660_539_040)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000),
           kg, 2.0e-35,
@@ -85,6 +95,9 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(CharacteristicImpedanceOfVacuum, Z_0, "Characteristic impedance of vacuum",
           376.73031346177066, BigFloat(1199_169_832)/BigFloat(10_000_000) * big(pi), Ω, 0,
           BigFloat(0.0), "CODATA 2019")
+@derived_constant(ReducedComptonElectronWavelength, ƛ_e, "Reduced Compton Electron Wavelength",
+                  1.380_648_52e-23, ustrip(big(ħ))/(c_0 * big(m_e)), Unitful.NoUnits,
+                  measurement(ħ)/(c_0 * m_e), measurement(BigFloat, ħ)/(c_0 * big(m_e)), "CODATA 2019")
 
 end
 # module CODATA2019
