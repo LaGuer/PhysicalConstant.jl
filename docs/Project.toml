@@ -1,10 +1,25 @@
+desc = "Mathematical Physical Constants."
+keywords = ["math", "physical", "constant", "codata"]
+name = "PhysicalConstant"
+uuid = "988cf3cc-0386-11e9-15da-fbc5ac71f155"
+repo = "https://github.com/LaGuer/PhysicalConstant.jl.git"
+author = "La Guer"
+license = "MIT"
+version = "v0.0.3"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
+
 [deps]
+Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
-QuadGK = "1fd47b50-473d-5c70-9696-f719f8f3bcdc"
-Cuba = "8a292aeb-7a57-582c-b821-06e4c11590b1"
-Calculus = "49dc2e85-a5d0-5ad3-a950-438e2897f1b9"
 Measurements = "eff96d63-e80a-5855-80a2-b1b0885c5ab7"
-PhysicalConstant = "988cf3cc-0386-11e9-15da-fbc5ac71f155"
+#Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [compat]
+Julia = ">= v0.7"
 Documenter = "~0.20"
+
