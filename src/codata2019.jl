@@ -8,9 +8,9 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(FineStructureConstant, α, "Fine-structure constant", 7.297_352_5664e-3,
           BigFloat(72_973_525_664)/BigFloat(10_000_000_000_000), Unitful.NoUnits,
           1.7e-12, BigFloat(17)/BigFloat(10_000_000_000_000), "CODATA 2019")
-@constant(BareHydrogenRadius, r_0, "Bare Hydrogen radius", 0.529_177_210_30e-10,
-          BigFloat(5291_772_103)/BigFloat(1_000_000_000_000_000_000_000), m,
-          1.2e-20, BigFloat(12)/BigFloat(1_000_000_000_000_000_000_000), "CODATA 2019")
+#@constant(BareHydrogenRadius, r_0, "Bare Hydrogen radius", 0.529_177_210_30e-10,
+#          BigFloat(5291_772_103)/BigFloat(1_000_000_000_000_000_000_000), m,
+#          1.2e-20, BigFloat(12)/BigFloat(1_000_000_000_000_000_000_000), "CODATA 2019")
 @constant(BohrRadius, a_0, "Bohr radius", 0.529_177_210_67e-10,
           BigFloat(52_917_721_067)/BigFloat(1_000_000_000_000_000_000_000), m,
           1.2e-20, BigFloat(12)/BigFloat(1_000_000_000_000_000_000_000), "CODATA 2019")
@@ -98,16 +98,16 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(CharacteristicImpedanceOfVacuum, Z_0, "Characteristic impedance of vacuum",
           376.73031346177066, BigFloat(1199_169_832)/BigFloat(10_000_000) * big(pi), Ω, 0,
           BigFloat(0.0), "CODATA 2019")
-@derived_constant(ReducedComptonElectronWavelength, ƛ_e, "Reduced Compton Electron Wavelength",
-                  1.380_648_52e-23, ustrip(big(ħ))/(c_0 * big(m_e)), Unitful.NoUnits,
-                  measurement(ħ)/(c_0 * m_e), measurement(BigFloat, ħ)/(c_0 * big(m_e)), "CODATA 2019")
-@constant(FMSanchezConstantOfGravitation, G_s, "F. M. Sanchez Constant of Gravitation", 6.675_45e-11,
-          big(667_545)/big(10_000_000_000_000_000), m^3 * kg^-1 * s^-2,
-          3.1e-15, big(31)/big(10_000_000_000_000_000), "F. M. Sanchez")
-@constant(CMBTemperature, Θ, "F. M. Sanchez CMB temperature (K)", 2.725_820_831, BigFloat(2725_820_831), K^-1,
-          0.0, BigFloat(0.0), "F. M. Sanchez")
-@constant(Gravitational Velocity, C_0, "Gravitational Velocity in interstellar vacuum", 3.699_3e44, 
-          BigFloat(369_930_000_000_000_000_000_000_000_000_000_000_000_000_000), m / s,
-          0.0, BigFloat(0), "Maruani J (2016) The Dirac electron: from quantum chemistry to holistic cosmology")
+#@derived_constant(ReducedComptonElectronWavelength, ƛ_e, "Reduced Compton Electron Wavelength",
+#                  1.380_648_52e-23, ustrip(big(ħ))/(c_0 * big(m_e)), Unitful.NoUnits,
+#                  measurement(ħ)/(c_0 * m_e), measurement(BigFloat, ħ)/(c_0 * big(m_e)), "CODATA 2019")
+#@constant(FMSanchezConstantOfGravitation, G_s, "F. M. Sanchez Constant of Gravitation", 6.675_45e-11,
+#          big(667_545)/big(10_000_000_000_000_000), m^3 * kg^-1 * s^-2,
+#          3.1e-15, big(31)/big(10_000_000_000_000_000), "F. M. Sanchez")
+#@constant(CMBTemperature, Θ, "F. M. Sanchez CMB temperature (K)", 2.725_820_831, BigFloat(2725_820_831), K^-1,
+#          0.0, BigFloat(0.0), "F. M. Sanchez")
+#@constant(Gravitational Velocity, C_0, "Gravitational Velocity in interstellar vacuum", 3.699_3e44, 
+#          BigFloat(369_930_000_000_000_000_000_000_000_000_000_000_000_000_000), m / s,
+#          0.0, BigFloat(0), "Maruani J (2016) The Dirac electron: from quantum chemistry to holistic cosmology")
 
 end # module CODATA2019
