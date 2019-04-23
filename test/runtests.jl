@@ -8,7 +8,7 @@ else
     using Test
 end
 
-import PhysicalConstant.CODATA2019: α, atm, c_0, e, ε_0, h, ħ, µ_0 #\\ C_0, ƛ_e
+import PhysicalConstant.CODATA2019: α, atm, c_0, e, ε_0, h, ħ, µ_0, ƛ_e
 
 @testset "Base" begin
     @test ustrip(big(h)) == big"6.626070040e-34"
@@ -40,6 +40,7 @@ end
 @testset "Maths" begin
     @test α ≈ @inferred(e^2/(4 * pi * ε_0 * ħ * c_0))
     @test @inferred(ħ / (c_0 * ElectronMass)) ≈ (ħ / float(c_0 * ElectronMass))
+    @test ƛ_e ≈ @inferred(ħ / (c_0 * ElectronMass))
     @test @inferred(α + 2) ≈ 2 + float(α)
     @test @inferred(5 + α) ≈ float(α) + 5
     @test @inferred(α + 2.718) ≈ 2.718 + float(α)
