@@ -18,7 +18,7 @@ import PhysicalConstant: @constant, @derived_constant
           1.7e-9, BigFloat(17)/BigFloat(10_000_000_000), "CODATA 2019")
 @constant(SpeedOfLightInVacuum, c_0, "Speed of light in vacuum", 299_792_458.0,
           BigFloat(299_792_458.0), m / s, 0.0, BigFloat(0), "CODATA 2019")
-@constant(GravitationalVelocity, C, "Gravitational velocity in interstellar vacuum", 3.699_3e44,
+@constant(GravitationalVelocity, C_0, "Gravitational velocity in interstellar vacuum", 3.699_3e44,
           BigFloat(369_930_000_000_000_000_000_000_000_000_000_000_000_000_000), m / s,
           0.0, BigFloat(0), "J. Maruani in Dirac Electron")
 @constant(MagneticConstant, µ_0, "Magnetic constant", 1.2566370614359173e-6,
