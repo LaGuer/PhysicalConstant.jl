@@ -54,7 +54,7 @@ import PhysicalConstant: @constant, @derived_constant
                   1.0545718001391127e-34, ustrip(big(h))/(2 * big(pi)), J * s,
                   measurement(h)/2pi, measurement(BigFloat, h)/(2 * big(pi)), "CODATA 2019")
 @constant(RedComptonElectrWavlgth, ƛe, "Reduced Compton Electron Wavelength", 1.380_648_52e-23,
-          ustrip(big(ħ))/(c_0 * big(m_e)), Unitful.NoUnits,
+          ustrip(big(ħ)) / ustrip(c_0 * big(m_e)), Unitful.NoUnits,
           0.0, BigFloat(0.0), "CODATA 2019")
 @constant(BoltzmannConstant, k_B, "Boltzmann constant", 1.380_648_52e-23,
           BigFloat(138_064_852)/BigFloat(10_000_000_000_000_000_000_000_000_000_000), J * K^-1,
@@ -111,9 +111,9 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(CharacteristicImpedanceOfVacuum, Z_0, "Characteristic impedance of vacuum",
           376.73031346177066, BigFloat(1199_169_832)/BigFloat(10_000_000) * big(pi), Ω, 0,
           BigFloat(0.0), "CODATA 2019")
-#@constant(CMBtemperature, Θ, "CMB temperature (K)",
-#          2.725_820_831, BigFloat(2725_820_831), K^-1,
-#          0.0, BigFloat(0.0), "Francis M. Sanchez")
+@constant(CMBtemperature, Θ, "CMB temperature (K)", 2.725_820_831,
+          BigFloat(2725_820_831), K^-1,
+          0.0, BigFloat(0.0), "Francis M. Sanchez")
 
 end
 # module CODATA2019
