@@ -102,9 +102,9 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(CharacteristicImpedanceOfVacuum, Z_0, "Characteristic impedance of vacuum",
           376.73031346177066, BigFloat(1199_169_832)/BigFloat(10_000_000) * big(pi), Ω, 0,
           BigFloat(0.0), "CODATA 2019")
-@constant(CMBtemperature, Θ, "CMB temperature (K)",
-          2.725_820_831, BigFloat(2725_820_831), K^-1,
-          0.0, BigFloat(0.0), "Francis M. Sanchez")
+#@constant(CMBtemperature, Θ, "CMB temperature (K)",
+#          2.725_820_831, BigFloat(2725_820_831), K^-1,
+#          0.0, BigFloat(0.0), "Francis M. Sanchez")
 @constant(GravitationalVelocity, C, "Gravitational velocity in interstellar vacuum",
           3.699_3e44, BigFloat(369_930_000_000_000_000_000_000_000_000_000_000_000_000_000), m / s,
           0.0, BigFloat(0), "J. Maruani in Dirac Electron")
