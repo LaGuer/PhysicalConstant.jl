@@ -111,8 +111,7 @@ import PhysicalConstant: @constant, @derived_constant
           376.73031346177066, BigFloat(1199_169_832)/BigFloat(10_000_000) * big(pi), Ω, 0,
           BigFloat(0.0), "CODATA 2019")
 @constant(CMBtemperature, Θ, "CMB temperature (K)", 2.725_820_831,
-          BigFloat(2725_820_831), K^-1,
-          0.0, BigFloat(0.0), "Francis M. Sanchez")
+          BigFloat(2725_820_831), K^-1, 0.0, BigFloat(0.0), "Francis M. Sanchez")
 
 end
 # module CODATA2019
