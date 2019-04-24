@@ -57,7 +57,7 @@ jobs:
       script:
 #        - julia --color=yes -e 'using Pkg; Pkg.build()'
 #        - julia --check-bounds=yes --color=yes -e 'using Pkg; Pkg.test(coverage=true)'
-        - julia --project=@ -e 'using Pkg; Pkg.instantiate()'
+#        - julia --project=@ -e 'using Pkg; Pkg.instantiate()'
         - julia --project=@ -e 'import Pkg; Pkg.add("Documenter")'
         - julia --project=@ -e 'import Pkg; Pkg.add("Measurements")'
         - julia --project=@ -e 'import Pkg; Pkg.add("Unitful")'
@@ -67,10 +67,14 @@ jobs:
         - julia --project=@ --color=yes -e 'using Pkg; Pkg.build()'
         - julia --project=@ -e 'import Pkg; Pkg.status()'
         - julia --project=@ -e 'import Pkg; Pkg.build()'
+        - julia --project=@ -e 'using Pkg; Pkg.instantiate()'
 #        - julia --project=@ docs/ -e 'import Pkg; Pkg.add("PhysicalConstant")'
 #        - julia --project=@ docs/ -e 'import Pkg; Pkg.build()'
 #        - julia --project=@ docs/make.jl
       after_success:
+        - julia -e 'import Pkg; Pkg.add("Measurements")'
+        - julia -e 'import Pkg; Pkg.add("Unitful")'
+        - julia -e 'using Pkg; Pkg.instantiate()'
         - julia --code-coverage test/runtests.jl
         - julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(process_folder())'
         - julia -e 'import Pkg; cd(Pkg.dir("PhysicalConstant")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())';
