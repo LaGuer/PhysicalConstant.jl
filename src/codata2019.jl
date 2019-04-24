@@ -12,7 +12,7 @@ import PhysicalConstant: @constant, @derived_constant
           BigFloat(52_917_721_067)/BigFloat(1_000_000_000_000_000_000_000), m,
           1.2e-20, BigFloat(12)/BigFloat(1_000_000_000_000_000_000_000), "CODATA 2019")
 @constant(BareHydrogenRadius, r_0, "Bare Hydrogen radius", 0.529_177_210_30e-10,
-          BigFloat(5291_772_103)/BigFloat(1_000_000_000_000_000_000_000), m,
+          BigFloat(52_917_721_030)/BigFloat(1_000_000_000_000_000_000_000), m,
           1.2e-20, BigFloat(12)/BigFloat(1_000_000_000_000_000_000_000), "CODATA 2019")
 @constant(StandardAtmosphere, atm, "Standard atmosphere", 101_325.0, BigFloat(101_325), Pa,
           0.0, BigFloat(0), "CODATA 2019")
