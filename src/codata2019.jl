@@ -16,6 +16,8 @@ import PhysicalConstant: @constant, @derived_constant
           1.2e-20, BigFloat(12)/BigFloat(1_000_000_000_000_000_000_000), "CODATA 2019")
 @constant(StandardAtmosphere, atm, "Standard atmosphere", 101_325.0, BigFloat(101_325), Pa,
           0.0, BigFloat(0), "CODATA 2019")
+@constant(CmbTemperature, CmB, "CMB temperature in K", 2.725_820_831, BigFloat(2.725_820_831), K^-1, 
+          0.0, BigFloat(0.0), "Francis M. Sanchez")
 @constant(WienWavelengthDisplacementLawConstant, b, "Wien wavelength displacement law constant",
           2.897_7729e-3, BigFloat(28_977_729)/BigFloat(10_000_000_000), m * K,
           1.7e-9, BigFloat(17)/BigFloat(10_000_000_000), "CODATA 2019")
@@ -110,9 +112,6 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(CharacteristicImpedanceOfVacuum, Z_0, "Characteristic impedance of vacuum",
           376.73031346177066, BigFloat(1199_169_832)/BigFloat(10_000_000) * big(pi), Ω, 0,
           BigFloat(0.0), "CODATA 2019")
-@constant(CmbTemperature, CmB, "CMB temperature in K", 2.725_820_831,
-          BigFloat(2725_820_831), K^-1, 
-          0.0, BigFloat(0.0), "Francis M. Sanchez")
 
 end
 # module CODATA2019
