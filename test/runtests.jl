@@ -8,7 +8,7 @@ else
     using Test
 end
 
-import PhysicalConstant.CODATA2019: α, atm, c_0, e, ε_0, h, ħ, µ_0, m_e, m_H #ƛ_e
+import PhysicalConstant.CODATA2019: α, atm, c_0, e, ε_0, h, ħ, µ_0, m_e, m_H, C_0 #ƛ_e
 
 @testset "Base" begin
     @test ustrip(big(h)) == big"6.626070040e-34"
@@ -22,6 +22,7 @@ end
 
 @testset "Utils" begin
     @test c_0.val === ustrip(float(c_0))
+    @test C_0.val === ustrip(float(C_0))
     @test_throws ErrorException h.foo
 end
 
