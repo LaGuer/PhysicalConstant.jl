@@ -18,6 +18,9 @@ import PhysicalConstant: @constant, @derived_constant
           1.7e-9, BigFloat(17)/BigFloat(10_000_000_000), "CODATA 2019")
 @constant(SpeedOfLightInVacuum, c_0, "Speed of light in vacuum", 299_792_458.0,
           BigFloat(299_792_458.0), m / s, 0.0, BigFloat(0), "CODATA 2019")
+@constant(GravitationalVelocity, C, "Gravitational velocity in interstellar vacuum", 3.699_3e44,
+          BigFloat(369_930_000_000_000_000_000_000_000_000_000_000_000_000_000), m / s,
+          0.0, BigFloat(0), "J. Maruani in Dirac Electron")
 @constant(MagneticConstant, µ_0, "Magnetic constant", 1.2566370614359173e-6,
           4*big(pi)/BigFloat(10_000_000), N * A^-2, 0.0, BigFloat(0.0),
           "CODATA 2019")
@@ -30,6 +33,9 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(NewtonianConstantOfGravitation, Gg, "Newtonian constant of gravitation",
           6.674_08e-11, big(667_408)/big(10_000_000_000_000_000), m^3 * kg^-1 * s^-2,
           3.1e-15, big(31)/big(10_000_000_000_000_000), "CODATA 2019")
+@constant(SanchezGravitationalConstant, G, "Sanchez constant of gravitation",
+          6.675_45e-11, big(667_545)/big(10_000_000_000_000_000), m^3 * kg^-1 * s^-2,
+          3.1e-15, big(31)/big(10_000_000_000_000_000), "Francis M. Sanchez")
 @constant(StandardAccelerationOfGravitation, g_n, "Standard acceleration of gravitation",
           9.806_65, big(980_665)/big(100_000), m * s^-2, 0, 0, "CODATA 2019")
 @constant(ElectronMass, m_e, "Electron mass at rest", 9.109_383_56e-31,
@@ -105,12 +111,6 @@ import PhysicalConstant: @constant, @derived_constant
 #@constant(CMBtemperature, Θ, "CMB temperature (K)",
 #          2.725_820_831, BigFloat(2725_820_831), K^-1,
 #          0.0, BigFloat(0.0), "Francis M. Sanchez")
-@constant(GravitationalVelocity, C, "Gravitational velocity in interstellar vacuum",
-          3.699_3e44, BigFloat(369_930_000_000_000_000_000_000_000_000_000_000_000_000_000), m / s,
-          0.0, BigFloat(0), "J. Maruani in Dirac Electron")
-@constant(SanchezGravitationalConstant, G, "Sanchez constant of gravitation",
-          6.675_45e-11, big(667_545)/big(10_000_000_000_000_000), m^3 * kg^-1 * s^-2,
-          3.1e-15, big(31)/big(10_000_000_000_000_000), "Francis M. Sanchez")
 @constant(BareHydrogenRadius, r_0, "Bare Hydrogen radius", 
           0.529_177_210_30e-10, BigFloat(5291_772_103)/BigFloat(1_000_000_000_000_000_000_000), m,
           1.2e-20, BigFloat(12)/BigFloat(1_000_000_000_000_000_000_000), "CODATA 2019")
