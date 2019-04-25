@@ -8,7 +8,7 @@ else
     using Test
 end
 
-import PhysicalConstant.CODATA2019: α, atm, c_0, e, ε_0, h, ħ, µ_0, m_e, m_H, C_0 #ƛ_e
+import PhysicalConstant.CODATA2019: α, atm, c_0, e, ε_0, h, ħ, µ_0, m_e, m_H, C_0, ƛe
 
 @testset "Base" begin
     @test ustrip(big(h)) == big"6.626070040e-34"
@@ -41,7 +41,7 @@ end
 @testset "Maths" begin
     @test α ≈ @inferred(e^2/(4 * pi * ε_0 * ħ * c_0))
     @test @inferred(ħ / (c_0 * m_e)) ≈ (ħ / float(c_0 * m_e))
-#    @test ƛ_e ≈ @inferred(ħ / (c_0 * m_e))
+    @test ƛe ≈ @inferred(ħ / (c_0 * m_e))
     @test @inferred(α + 2) ≈ 2 + float(α)
     @test @inferred(5 + α) ≈ float(α) + 5
     @test @inferred(α + 2.718) ≈ 2.718 + float(α)
@@ -75,5 +75,11 @@ Reference                     = CODATA 2019"
 Value                         = 1.0545718001391127e-34 J s
 Standard uncertainty          = 1.2891550390443523e-42 J s
 Relative standard uncertainty = 1.2e-8
+Reference                     = CODATA 2019"
+    @test repr(ƛe) ==
+        "Reduced Compton Electron Wavelength (ƛe)
+Value                         = 1.38064852e-23
+Standard uncertainty          = (exact)
+Relative standard uncertainty = (exact)
 Reference                     = CODATA 2019"
 end
