@@ -53,5 +53,5 @@ test_script:
   - C:\julia\bin\julia -e "%JL_TEST_SCRIPT%"
   
 after_test:
-  - C:\julia\bin\julia -e "using Pkg; Pkg.add(\"Coverage\"); using Coverage; Codecov.submit(process_folder())"
-  - C:\julia\bin\julia -e "import Pkg; cd(Pkg.dir("PhysicalConstant")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())';
+#  - C:\julia\bin\julia -e "using Pkg; Pkg.add(\"Coverage\"); using Coverage; Codecov.submit(process_folder())"
+  - C:\julia\bin\julia -e "import Pkg; cd(Pkg.dir(\"PhysicalConstant\")); Pkg.add(\"Coverage\"); using Coverage; Coveralls.submit(Coveralls.process_folder())";
