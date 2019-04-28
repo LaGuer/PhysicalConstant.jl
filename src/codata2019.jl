@@ -115,6 +115,10 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(CharacteristicImpedanceOfVacuum, Z_0, "Characteristic impedance of vacuum",
           376.73031346177066, BigFloat(1199_169_832)/BigFloat(10_000_000) * big(pi), Ω, 0,
           BigFloat(0.0), "CODATA 2019")
+@constant(UnGrStHypStrTrFrCa, ΔνCs, "Unperturbed ground state hyperfine structure transition frequency of the caesium-133 atom",
+          9192_631_770, BigFloat(9192_631_770)/BigFloat(1000_000_000), s^-1, 0, 0, "CODATA 2019")
+
+
 
 end
 # module CODATA2019
