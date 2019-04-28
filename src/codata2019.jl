@@ -55,8 +55,10 @@ import PhysicalConstant: @constant, @derived_constant
 @derived_constant(PlanckConstantOver2pi, ħ, "Planck constant over 2pi",
                   1.0545718001391127e-34, ustrip(big(h))/(2 * big(pi)), J * s,
                   measurement(h)/2pi, measurement(BigFloat, h)/(2 * big(pi)), "CODATA 2019")
-@constant(RedComptonElectrWavlgth, ƛe, "Reduced Compton Electron Wavelength", 3.861_592_675_486_041_4e-13,
-          BigFloat(3.861_592_675_486_041_4e-13), Unitful.NoUnits,  0.0, BigFloat(0), "CODATA 2019")
+@constant(RedComptonElectrWavlgth, ƛe, "Reduced Compton Electron Wavelength", 386.1_592_675_486_041_4e-15,
+          BigFloat(386.1_592_675_486_041_4e-15), m,  0.0, BigFloat(0), "CODATA 2019")
+@constant(ComptonElectrWavlgth, λe, "Compton Electron Wavelength", 2.426_310_236_7e-12,
+          BigFloat(2.426_310_236_7e-12), m,  0.0, BigFloat(0), "CODATA 2019")
 @constant(BoltzmannConstant, k_B, "Boltzmann constant", 1.380_648_52e-23,
           BigFloat(138_064_852)/BigFloat(10_000_000_000_000_000_000_000_000_000_000), J * K^-1,
           7.9e-30, BigFloat(79)/BigFloat(10_000_000_000_000_000_000_000_000_000_000), "CODATA 2019")
@@ -64,11 +66,11 @@ import PhysicalConstant: @constant, @derived_constant
           BigFloat(9274_009_994)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000),
           J * T^-1, 5.7e-32,
           BigFloat(57)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000), "CODATA 2019")
-#@constant(HydrogenMass, m_H, "Hydrogen mass", 1.673_723_600e-27,
-#          BigFloat(1673_723_600)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
-#          kg, 2.1e-35,
-#          BigFloat(21)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
-#          "CODATA 2019")
+@constant(HMass, m_H, "Hydrogen mass", 1.673_723_600e-27,
+          BigFloat(1673_723_600)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
+          kg, 2.1e-35,
+          BigFloat(21)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
+          "CODATA 2019")
 @constant(NeutronMass, m_n, "Neutron mass", 1.674_927_471e-27,
           BigFloat(1674_927_471)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000),
           kg, 2.1e-35,
