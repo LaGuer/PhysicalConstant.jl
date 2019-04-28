@@ -78,7 +78,7 @@ Relative standard uncertainty = 1.2e-8
 Reference                     = CODATA 2019"
     @test repr(ƛe) ==
         "Reduced Compton Electron Wavelength (ƛe)
-Value                         = 3.8615926754860414e-13
+Value                         = 386.15926754860414e-15
 Standard uncertainty          = (exact)
 Relative standard uncertainty = (exact)
 Reference                     = CODATA 2019"
