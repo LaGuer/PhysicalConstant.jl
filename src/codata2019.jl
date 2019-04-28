@@ -38,11 +38,13 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(NewtonianConstantOfGravitation, Gg, "Newtonian constant of gravitation",
           6.674_08e-11, big(667_408)/big(10_000_000_000_000_000), m^3 * kg^-1 * s^-2,
           3.1e-15, big(31)/big(10_000_000_000_000_000), "CODATA 2019")
-@constant(SanchezGravitationalConstant, G, "Sanchez constant of gravitation",
+@constant(SanchezGravitationalConstant, G, "F. M. Sanchez constant of gravitation",
           6.675_45e-11, big(667_545)/big(10_000_000_000_000_000), m^3 * kg^-1 * s^-2,
           3.1e-15, big(31)/big(10_000_000_000_000_000), "Francis M. Sanchez")
 @constant(StandardAccelerationOfGravitation, g_n, "Standard acceleration of gravitation",
           9.806_65, big(980_665)/big(100_000), m * s^-2, 0, 0, "CODATA 2019")
+@constant(UnGrStHypStrTrFrCa, ΔνCs, "Unperturbed grd state hyperfine structure transit freq of caesium-133 atom",
+          9_192_631_770, big(9_192_631_770), s^-1, 0, 0, "CODATA 2019")
 @constant(ElectronMass, m_e, "Electron mass at rest", 9.109_383_56e-31,
           BigFloat(910_938_356)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
           kg, 1.1e-38,
@@ -115,10 +117,6 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(CharacteristicImpedanceOfVacuum, Z_0, "Characteristic impedance of vacuum",
           376.73031346177066, BigFloat(1199_169_832)/BigFloat(10_000_000) * big(pi), Ω, 0,
           BigFloat(0.0), "CODATA 2019")
-@constant(UnGrStHypStrTrFrCa, ΔνCs, "Unperturbed ground state hyperfine structure transition frequency of the caesium-133 atom",
-          9192_631_770, big(9192_631_770), s^-1, 0, 0, "CODATA 2019")
-
-
 
 end
 # module CODATA2019
