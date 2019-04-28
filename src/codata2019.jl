@@ -43,8 +43,8 @@ import PhysicalConstant: @constant, @derived_constant
           3.1e-15, big(31)/big(10_000_000_000_000_000), "Francis M. Sanchez")
 @constant(StandardAccelerationOfGravitation, g_n, "Standard acceleration of gravitation",
           9.806_65, big(980_665)/big(100_000), m * s^-2, 0, 0, "CODATA 2019")
-@constant(HyperFineGroundStateFreqCs, ΔνC_s, "Grd State Freq cesium-133", 919_263_177, BigFloat(919_263_177), s^-1,
-          0.0, BigFloat(0.0), "CODATA 2019")
+@constant(HyperFineGroundStateFreqCs, ΔνC_s, "Grd State Freq cesium-133", 919_263_177.0,
+          BigFloat(919_263_177.0), s^-1, 0.0, BigFloat(0), "CODATA 2019")
 @constant(ElectronMass, m_e, "Electron mass at rest", 9.109_383_56e-31,
           BigFloat(910_938_356)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
           kg, 1.1e-38,
