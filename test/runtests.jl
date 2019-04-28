@@ -8,7 +8,7 @@ else
     using Test
 end
 
-import PhysicalConstant.CODATA2019: α, atm, c_0, e, ε_0, h, ħ, µ_0, m_e, m_H, C_0, ƛe, CmB
+import PhysicalConstant.CODATA2019: α, atm, c_0, e, ε_0, h, ħ, µ_0, m_e, m_H, C_0, ƛe, CmB, r_0
 
 @testset "Base" begin
     @test ustrip(big(h)) == big"6.626070040e-34"
