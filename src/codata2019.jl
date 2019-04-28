@@ -44,7 +44,7 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(StandardAccelerationOfGravitation, g_n, "Standard acceleration of gravitation",
           9.806_65, big(980_665)/big(100_000), m * s^-2, 0, 0, "CODATA 2019")
 @constant(UnGrStHypStrTrFrCa, ΔνCs, "Unperturbed grd state hyperfine structure transit freq of caesium-133 atom",
-          9_192_631_770, big(9_192_631_770), s^-1, 0, 0, "CODATA 2019")
+          919_263_177, big(919_263_177), s^-1, 0, 0, "CODATA 2019")
 @constant(ElectronMass, m_e, "Electron mass at rest", 9.109_383_56e-31,
           BigFloat(910_938_356)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
           kg, 1.1e-38,
