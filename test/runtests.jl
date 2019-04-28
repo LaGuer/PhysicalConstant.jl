@@ -76,10 +76,10 @@ Value                         = 1.0545718001391127e-34 J s
 Standard uncertainty          = 1.2891550390443523e-42 J s
 Relative standard uncertainty = 1.2e-8
 Reference                     = CODATA 2019"
-    @test repr(ƛe) ==
-        "Reduced Compton Electron Wavelength (ƛe)
-Value                         = 386.15926754860414e-15
-Standard uncertainty          = (exact)
-Relative standard uncertainty = (exact)
+    @test repr(r_0) ==
+        "Bare Hydrogen radius (r_0)
+Value                         = 5.291772103e-11 m
+Standard uncertainty          = 1.2e-20 m
+Relative standard uncertainty = 2.3e-10
 Reference                     = CODATA 2019"
 end
