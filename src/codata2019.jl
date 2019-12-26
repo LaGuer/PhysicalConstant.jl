@@ -117,6 +117,11 @@ import PhysicalConstant: @constant, @derived_constant
 @constant(CharacteristicImpedanceOfVacuum, Z_0, "Characteristic impedance of vacuum",
           376.73031346177066, BigFloat(1199_169_832)/BigFloat(10_000_000) * big(pi), Ω, 0,
           BigFloat(0.0), "CODATA 2019")
+@constant(VonKlitzingConstant, R_K, "Von Klitzing Constant",
+          25812.80745, BigFloat(25_812_807_45), Ω,
+          0.0, BigFloat(0), "CODATA 2019")
+
+
 
 end
 # module CODATA2019
