@@ -68,7 +68,7 @@ import PhysicalConstant: @constant, @derived_constant
           BigFloat(9274_009_994)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000),
           J * T^-1, 5.7e-32,
           BigFloat(57)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000), "CODATA 2019")
-@constant(HydrogenMass, m_h, "Hydrogen mass", 1.673_723_600e-27,
+@constant(HydrogenMass, m_H, "Hydrogen mass", 1.673_723_600e-27,
           BigFloat(1673_723_600)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
           kg, 2.1e-35,
           BigFloat(21)/BigFloat(1000_000_000_000_000_000_000_000_000_000_000_000_000),
