@@ -1,10 +1,10 @@
 # PhysicalConstant.jl
 
-| **Documentation**                       |          **Supported OS**             | **Build Status**                          | **Code Coverage**               |
+| **Documentation**                       |  **Supported OS and Julia Version**   | **Build Status**                          | **Code Coverage**               |
 |:---------------------------------------:|:-------------------------------------:|:-----------------------------------------:|:-------------------------------:|
-| [![][docs-stable-img]][docs-stable-url] | [![osx][pkg-0.0.2-img]][pkg-0.0.2-url]       | [![Build Status][travis-img]][travis-url] | [![][coveral-img]][coveral-url] |
-| [![][docs-latest-img]][docs-latest-url] | [![linux][pkg-0.0.3-img]][pkg-0.0.3-url]       | [![Build Status][appvey-img]][appvey-url] | [![][codecov-img]][codecov-url] |
-| [![][docs-latest-img]][docs-latest-url] | [![windows][pkg-0.0.3-img]][pkg-0.0.3-url]       | [![Build Status][appvey-img]][appvey-url] | [![][codecov-img]][codecov-url] |
+| [![][docs-stable-img]][docs-stable-url] |[osx][Julia 0.7][Julia 1.0][Julia 1.3] | [![Build Status][travis-img]][travis-url] | [![][coveral-img]][coveral-url] |
+| [![][docs-latest-img]][docs-latest-url] |[linux][Julia 0.7][Julia 1.0][Julia1.3]| [![Build Status][appvey-img]][appvey-url] | [![][codecov-img]][codecov-url] |
+| [![][docs-latest-img]][docs-latest-url] |[windows][Julia0.7][Julia1.0][Julia1.3]| [![Build Status][appvey-img]][appvey-url] | [![][codecov-img]][codecov-url] |
 
 [![codecov](https://codecov.io/gh/LaGuer/PhysicalConstant.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/LaGuer/PhysicalConstant.jl)
 
